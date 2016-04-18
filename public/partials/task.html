@@ -1,0 +1,12 @@
+<div class="row">
+  <span id="title-primary">Task<span> <span id="title-secondary">gotta get this done</span>
+</div>
+
+<div class="row text-right">
+  <a class="success button" ng-href="#/tasks/{{task._id}}/edit">edit task</a><br>
+</div>
+
+<div class="row">
+  <div class="small-6 columns"><h4>{{task.name}}</h4><br><strong>Assigned to:</strong> {{task.assignedUserName}}</div>
+  <div class="small-6 columns"><h4>Deadline: {{task.deadline}}</h4>Completed: {{task.completed}}</div>
+</div>

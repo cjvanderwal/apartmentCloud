@@ -1,0 +1,50 @@
+<div class="row">
+  <span id="title-primary">Edit Task<span> <span id="title-secondary">staying occupied</span>
+</div>
+
+<form name="editTaskForm" novalidate>
+  Name <span id="required">*</span>
+	<div class="row">
+    <div class="form-group">
+      <div class="small-7 columns">
+  		  <input ng-model="task.name" name="name" type="text" class="form-control" required>
+        <p ng-show="addTaskForm.name.$invalid" class="help-block">A name is required.</p>
+      </div>
+    </div>
+	</div>
+  Description
+  <div class="row">
+    <div class="small-7 columns">
+      <input ng-model="task.description" type="text">
+    </div>
+  </div>
+  Deadline <span id="required">*</span>
+  <div class="row">
+		<div class="form-group">
+	    <div class="small-7 columns">
+				<datepicker>
+	      	<input ng-model="task.deadline" name="deadline" type="text" class="form-control" required>
+				</datepicker>
+				<p ng-show="addTaskForm.deadline.$invalid" class="help-block">A deadline is required.</p>
+	    </div>
+		</div>
+  </div>
+  Assigned User
+  <div class="row">
+    <div class="small-7 columns">
+      <select ng-model="task.assignedUser">
+        <option ng-repeat="user in userList" value="{{user._id}}">{{user.name}}</option>
+	    </select>
+    </div>
+  </div>
+    Completed
+    <input type="radio" name="completed" ng-checked="task.completed" ng-click="task.completed = true"> Yes
+    <input type="radio" name="completed" ng-checked="!task.completed" ng-click="task.completed = false"> No
+	<div class="row text-center">
+	  <div class="small-7 text-center columns">
+	    <button id="submit" class="button info" ng-click="editTask()">Submit</button>
+	  </div>
+	</div>
+</form>
+
+{{status}}
