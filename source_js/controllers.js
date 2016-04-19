@@ -1,5 +1,5 @@
 var apartmentCloudControllers = angular.module('apartmentCloudControllers', []);
 
-apartmentCloudControllers.controller('UsersController', ['$scope', '$http', 'Users', 'Tasks', function($scope, $http, Users, Tasks) {
+apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http', function($scope, $http) {
 
 }]);

@@ -1,6 +1,6 @@
 var apartmentCloudServices = angular.module('apartmentCloudServices', []);
 
-mp4Services.factory('Users', function($http, $window) {
+apartmentCloudServices.factory('Users', function($http, $window) {
   return {
     getAll : function() {
       var baseUrl = $window.sessionStorage.baseurl;

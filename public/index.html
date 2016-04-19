@@ -20,22 +20,10 @@
     <script src="./lib/angularjs-datepicker/src/js/angular-datepicker.js"></script>
 </head>
 
-<body ng-app="mp4">
+<body ng-app="apartmentCloud">
 
-    <div class="small-10 text-center small-centered columns">
-      <h1 class"text-center">Awesome Task Manager</h1>
-    </div>
+  <div ng-view></div>
 
-    <div class="row">
-      <div class="small-9 columns">
-        <div ng-view></div>
-      </div>
-      <div class="small-3 columns">
-          <a class="large expanded button" ng-href="#/users">Users</a><br>
-      	  <a class="large expanded button" ng-href="#/tasks">Tasks</a><br>
-          <a class="large expanded button" ng-href="#/settings">Settings</a>
-      </div>
-    </div>
 
     <!-- Scripts -->
     <script src="./lib/jquery-2.1.3.min/index.js"></script>
