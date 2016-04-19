@@ -1,4 +1,4 @@
-var app = angular.module('mp4', ['ngRoute', 'mp4Controllers', 'mp4Services' ,'720kb.datepicker']);
+var app = angular.module('apartmentCloud', ['ngRoute', 'apartmentCloudControllers', 'apartmentCloudServices']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
