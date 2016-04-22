@@ -1,12 +1,11 @@
 // Get the packages we need
 var express = require('express');
 var mongoose = require('mongoose');
-//var Llama = require('./models/llama');
 var bodyParser = require('body-parser');
 var router = express.Router();
 
 //replace this with your Mongolab URL
-mongoose.connect('');
+mongoose.connect('mongodb://admin:ax84GTFgZDK42JLT@ds013931.mlab.com:13931/final_project');
 
 // Create our Express application
 var app = express();
@@ -32,16 +31,10 @@ homeRoute.get(function(req, res) {
   res.status(200).json({ message: 'Hello World!', data: [] });
 });
 
-//Llama route
-/*
-var llamaRoute = router.route('/llamas');
+// All our routes will start with /api
+app.use('/api', router);
 
-llamaRoute.get(function(req, res) {
-  res.json([{ "name": "alice", "height": 12 }, { "name": "jane", "height": 13 }]);
-});
-*/
 //Add more routes here
-
 var User = require('./models/user.js');
 //200 (success), 201 (created), 404 (not found), 500 (server error).
 router.route('/users')
@@ -167,10 +160,6 @@ router.route('/users/:id')
             res.status(200).json({message:"User deleted", data: []});
         });
     });
-
-
-// All our routes will start with /api
-app.use('/api', router);
 
 // Start the server
 app.listen(port);

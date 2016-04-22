@@ -9,7 +9,8 @@ var ApartmentSchema = new mongoose.Schema({
     noOfBedroom: {type: Number, required: true},
     noOfBathRoom: {type: Number, required: true},
     image: {type: String, required: true},
-    dateCreated: {type: Date, default: Date.now}
+    startLease: {type: Date, required: true},
+    endLease: {type: Date, required: true}
 });
 
 module.exports = mongoose.model('Apartment', ApartmentSchema);
