@@ -1,13 +1,27 @@
+<div class="loginsignup">
+  <div class="row">
 
+    <div ng-show="!newUser">
+      <div class="small-6 small-centered columns text-center">
+        <h1>Sign in</h1>
+    		 <input ng-model="username" type="text" placeholder="Username" required>
+         <input ng-model="password" type="text" placeholder="Password" required>
+         <button class="success button" ng-click="login()">Login</button><br>
+         <a ng-click="signUp()">Don't have an account? Sign up instead</a><br>
+         {{loginStatus}}
+      </div>
+    </div>
 
-<div class="row">
+    <div ng-show="newUser">
+      <div class="small-6 small-centered columns text-center">
+        <h1>Sign up</h1>
+        <input ng-model="username" type="text" placeholder="Username" required>
+        <input ng-model="password" type="text" placeholder="Password" required>
+        <button class="success button" ng-click="register()">Register</button><br>
+        <a ng-click="signIn()">Have an account? Sign in instead</a><br>
+        {{registerStatus}}
+      </div>
+    </div>
 
-  <div class="small-6 columns">
-    signup
   </div>
-
-  <div class="small-6 columns">
-    login
-  </div>
-
 </div>

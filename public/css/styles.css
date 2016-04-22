@@ -4160,41 +4160,6 @@ table.hover tr:nth-of-type(even):hover {
 .top-bar-right {
   float: right; }
 
-/* line 1, ../../source_sass/_base.scss */
-#title-primary {
-  position: relative;
-  font-size: 50px;
-  color: black; }
-
-/* line 8, ../../source_sass/_base.scss */
-#title-secondary {
-  font-size: 33px;
-  color: gray; }
-
-/* line 13, ../../source_sass/_base.scss */
-h1 {
-  background-color: #e6e6e6;
-  margin-bottom: 50px; }
-
-/* line 18, ../../source_sass/_base.scss */
-#submit {
-  color: black;
-  background-color: #99ccff; }
-
-/* line 23, ../../source_sass/_base.scss */
-#required {
-  color: red; }
-
-/* line 27, ../../source_sass/_base.scss */
-.button {
-  border-radius: 3px; }
-
-/* line 31, ../../source_sass/_base.scss */
-li {
-  list-style: none;
-  border-top: 1px solid #e6e6e6;
-  padding-top: 15px; }
-
 /*
   NOTE: Do not touch this file. Write the bulk of your custom styles
   in _base.scss

@@ -1,9 +1,20 @@
-// .table {
-//     display: table;
-//     width: 100%;
-//
-//     .inner {
-//       display: table-cell;
-//       vertical-align: middle;
-//     }
-// }
+body {
+  font-family: $font-primary;
+}
+
+.title {
+  font-family: $font-secondary;
+  text-align: center;
+}
+
+h1 {
+  font-family: $font-primary;
+}
+
+.inline_item {
+  display: inline;
+}
+
+.fixed_width {
+  width: 50px;
+}
