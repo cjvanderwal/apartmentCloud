@@ -6,7 +6,11 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/loginsignup.html',
     controller: 'LoginSignupController'
   }).
+  when('/frontpage', {
+    templateUrl: 'partials/frontpage.html',
+    controller: 'FrontPageController'
+  }).
   otherwise({
-    redirectTo: '/loginsignup'
+    redirectTo: '/frontpage'
   });
 }]);
