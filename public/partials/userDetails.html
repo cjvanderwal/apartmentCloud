@@ -1,0 +1,30 @@
+<div class="userDetails">
+  <div class="row">
+
+    <div class="small-3 columns text-center">
+      <div style="color:white;background-color:blue;height:200px;">picture</div><br>
+      <button class="success button" ng-click="subLease()">Create a sublease</button>
+    </div>
+
+    <div class="small-7 columns">
+      <p>Favorite Apartments</p>
+      <span style="color:white;background-color:red;height:150px;">apt1</span>
+      <span style="color:white;background-color:red;height:150px;">apt2</span>
+      <span style="color:white;background-color:red;height:150px;">apt3</span>
+      <span style="color:white;background-color:red;height:150px;">apt4</span>
+    </div>
+
+    <div ng-show="!changePassword">
+      <button class="button" ng-click="changePassword = !changePassword">Change Password</button>
+    </div>
+
+    <div ng-show="changePassword">
+      <div class="small-2 columns">
+        <a class="float-right" ng-click="changePassword = !changePassword">X</a><br>
+        <input ng-model="newPassword" type="text" placeholder="password">
+        <button class="success button" ng-click="changePassword()">Change</button>
+      </div>
+    </div>
+
+  </div>
+</div>

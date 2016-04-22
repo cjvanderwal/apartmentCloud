@@ -7,3 +7,4 @@ npm-debug.log
 public/css/
 public/js/
 public/lib/
+bower_components/

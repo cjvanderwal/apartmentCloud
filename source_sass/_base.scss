@@ -1,1 +1,31 @@
+body {
+  font-family: $font-primary;
+}
 
+.title {
+  font-family: $font-secondary;
+  text-align: center;
+}
+
+h1 {
+  font-family: $font-primary;
+}
+
+.inline_item {
+  display: inline;
+}
+
+.fixed_width {
+  width: 50px;
+}
+
+.center {
+  text-align: center;
+}
+
+.go_button {
+  min-width: 300px;
+  width: 40%;
+  height: 100px;
+  font-size: 40px;
+}

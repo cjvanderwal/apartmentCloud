@@ -4161,39 +4161,36 @@ table.hover tr:nth-of-type(even):hover {
   float: right; }
 
 /* line 1, ../../source_sass/_base.scss */
-#title-primary {
-  position: relative;
-  font-size: 50px;
-  color: black; }
+body {
+  font-family: "Raleway", sans-serif; }
 
-/* line 8, ../../source_sass/_base.scss */
-#title-secondary {
-  font-size: 33px;
-  color: gray; }
+/* line 5, ../../source_sass/_base.scss */
+.title {
+  font-family: "Pacifico", cursive;
+  text-align: center; }
 
-/* line 13, ../../source_sass/_base.scss */
+/* line 10, ../../source_sass/_base.scss */
 h1 {
-  background-color: #e6e6e6;
-  margin-bottom: 50px; }
+  font-family: "Raleway", sans-serif; }
+
+/* line 14, ../../source_sass/_base.scss */
+.inline_item {
+  display: inline; }
 
 /* line 18, ../../source_sass/_base.scss */
-#submit {
-  color: black;
-  background-color: #99ccff; }
+.fixed_width {
+  width: 50px; }
 
-/* line 23, ../../source_sass/_base.scss */
-#required {
-  color: red; }
+/* line 22, ../../source_sass/_base.scss */
+.center {
+  text-align: center; }
 
-/* line 27, ../../source_sass/_base.scss */
-.button {
-  border-radius: 3px; }
-
-/* line 31, ../../source_sass/_base.scss */
-li {
-  list-style: none;
-  border-top: 1px solid #e6e6e6;
-  padding-top: 15px; }
+/* line 26, ../../source_sass/_base.scss */
+.go_button {
+  min-width: 300px;
+  width: 40%;
+  height: 100px;
+  font-size: 40px; }
 
 /*
   NOTE: Do not touch this file. Write the bulk of your custom styles

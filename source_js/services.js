@@ -1,26 +1,20 @@
 var apartmentCloudServices = angular.module('apartmentCloudServices', []);
 
-apartmentCloudServices.factory('Users', function($http, $window) {
+apartmentCloudServices.factory('Apartments', function($http) {
   return {
-    getAll : function() {
-      var baseUrl = $window.sessionStorage.baseurl;
-      return $http.get(baseUrl+'/api/users');
+    getDetails : function(id) {
+      return $http.get('localhost:4000/api/apartments/'+id);
+    }
+  }
+});
+
+apartmentCloudServices.factory('Users', function($http) {
+  return {
+    getDetails : function(id) {
+      return $http.get('localhost:4000/api/users/'+id);
     },
-    getById : function(id) {
-      var baseUrl = $window.sessionStorage.baseurl;
-      return $http.get(baseUrl+'/api/users/'+id);
-    },
-    remove : function(id) {
-      var baseUrl = $window.sessionStorage.baseurl;
-      return $http.delete(baseUrl+'/api/users/'+id);
-    },
-    add : function(obj) {
-      var baseUrl = $window.sessionStorage.baseurl;
-      return $http.post(baseUrl+'/api/users/', obj);
-    },
-    put : function(obj) {
-      var baseUrl = $window.sessionStorage.baseurl;
-      return $http.put(baseUrl+'/api/users/'+obj._id, obj);
+    addUser: function(newUser_obj) {
+      return $http.post('localhost:4000/api/users');
     }
   }
 });
