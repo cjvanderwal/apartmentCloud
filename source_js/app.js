@@ -2,11 +2,19 @@ var app = angular.module('apartmentCloud', ['ngRoute', 'apartmentCloudController
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-    when('/loginsignup', {
-    templateUrl: 'partials/loginsignup.html',
+  when('/login', {
+    templateUrl: 'partials/loginSignup.html',
     controller: 'LoginSignupController'
   }).
+  when('/aptID', {
+    templateUrl: 'partials/aptDetails.html',
+    controller: 'ApartmentDetailsController'
+  }).
+  when('/userID', {
+    templateUrl: 'partials/userDetails.html',
+    controller: 'UserDetailsController'
+  }).
   otherwise({
-    redirectTo: '/loginsignup'
+    redirectTo: '/login'
   });
 }]);
