@@ -1,0 +1,27 @@
+<div class="row" ng-controller='FrontPageController'>
+
+    <h1>Choose your preferences</h1>
+    <div class="small-12 columns">
+        <div class="small-8 columns">
+            <form>
+                # Bedrooms<span><input ng-model="numBedrooms" type="text" placeholder="e.g. 1-3"></span>
+                # Bathrooms<span><input ng-model="numBathrooms" type="text" placeholder="e.g. 1-3"></span>
+                Price per month $<input ng-model="priceLower" type="text" placeholder="300" class="fixed_width inline_item"> - $<input ng-model="priceUpper" type="text" placeholder="600" class="fixed_width inline_item">
+                <br>
+                <span>Company
+                    <select>
+                      <option value="someapt">Some apartment</option>
+                       <option value="someotherapt">Some other apartment</option>
+                    </select>
+                </span>
+
+            </form>
+        </div>
+
+        <div class="small-4 columns">
+            map stuff
+        </div>
+    </div>
+    <br>
+    <div class="center"><button class="button go_button">Go</button></div>
+</div>

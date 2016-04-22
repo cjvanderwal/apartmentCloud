@@ -60,3 +60,10 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http'
   // };
 
 }]);
+
+apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', function($scope, $http) {
+  $scope.init = function() {
+    $(document).foundation();
+  };
+  $scope.init();
+}]);

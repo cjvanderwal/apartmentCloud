@@ -4160,6 +4160,38 @@ table.hover tr:nth-of-type(even):hover {
 .top-bar-right {
   float: right; }
 
+/* line 1, ../../source_sass/_base.scss */
+body {
+  font-family: "Raleway", sans-serif; }
+
+/* line 5, ../../source_sass/_base.scss */
+.title {
+  font-family: "Pacifico", cursive;
+  text-align: center; }
+
+/* line 10, ../../source_sass/_base.scss */
+h1 {
+  font-family: "Raleway", sans-serif; }
+
+/* line 14, ../../source_sass/_base.scss */
+.inline_item {
+  display: inline; }
+
+/* line 18, ../../source_sass/_base.scss */
+.fixed_width {
+  width: 50px; }
+
+/* line 22, ../../source_sass/_base.scss */
+.center {
+  text-align: center; }
+
+/* line 26, ../../source_sass/_base.scss */
+.go_button {
+  min-width: 300px;
+  width: 40%;
+  height: 100px;
+  font-size: 40px; }
+
 /*
   NOTE: Do not touch this file. Write the bulk of your custom styles
   in _base.scss
