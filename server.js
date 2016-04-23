@@ -70,9 +70,9 @@ router.route('/users')
       var name = req.body.name;
       var email = req.body.email;
       var pass = req.body.bcrypt_pass;
-
+      
       if(name == null) {
-        res.status(500).json({message:"Missing name", data:[]});
+        res.status(100).json({message:"Missing name", data:[]});
       }
       else if(email == null) {
             res.status(500).json({message:"Missing email", data:[]});
