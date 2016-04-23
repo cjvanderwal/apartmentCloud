@@ -6,8 +6,9 @@ var UserSchema    = new mongoose.Schema({
   name: {type:String, required:true},
   dateCreated: {type:Date, default: Date.now},
   bcrypt_pass: {type:String, required:true},
+  //authorization_token: {type:String, default:""},
   //favorited_ids: {type:[ObjectId], default:[]},
-  bio: {type:String, default:""},
+  bio: {type:String, default:""}
   //picture_id: {type:ObjectId, default:"put default image id"}
 });
 
