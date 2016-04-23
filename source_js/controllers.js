@@ -25,10 +25,10 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
     });
   };
 
-  // user is logging in, send GET request to backend
-  $scope.login = function() {
-    //?????
-  };
+  // // user is logging in, send GET request to backend
+  // $scope.login = function() {
+  //   //?????
+  // };
 
 }]);
 
@@ -39,10 +39,10 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
     $scope.apartment = response.data;
   });
 
-  // saves the current apartment to the users' favorite list
-  $scope.saveApartment = function() {
-    //?????
-  };
+  // // saves the current apartment to the users' favorite list
+  // $scope.saveApartment = function() {
+  //   //?????
+  // };
 
 }]);
 
@@ -59,6 +59,20 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http'
   //   //?????
   // };
 
+}]);
+
+apartmentCloudControllers.controller('SubleaseController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+  // $scope.name = "";
+  // $scope.address = "";
+  // $scope.price = "";
+  // $scope.bedrooms = 0;
+  // $scope.bathrooms = 0;
+  // $scope.startDate = Date.now();
+  // $scope.endDate = Date.now();
+
+  // $scope.addSublease = function() {
+  //   Apartments.createSublease(obj...)
+  // };
 }]);
 
 apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', function($scope, $http) {

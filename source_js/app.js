@@ -14,6 +14,10 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/userDetails.html',
     controller: 'UserDetailsController'
   }).
+  when('/sublease', {
+    templateUrl: 'partials/sublease.html',
+    controller: 'SubleaseController'
+  }).
   when('/frontpage', {
     templateUrl: 'partials/frontpage.html',
     controller: 'FrontPageController'
