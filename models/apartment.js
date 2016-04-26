@@ -9,7 +9,7 @@ var ApartmentSchema = new mongoose.Schema({
     price: {type: Number, required: true},
     noOfBedroom: {type: Number, required: true},
     noOfBathRoom: {type: Number, required: true},
-    image: {type: String},
+    image: {type: String, default: 'https://openclipart.org/download/19100/josuemb-house-silhouette.svg'},
     startLease: {type: Date, required: true},
     endLease: {type: Date, required: true}
 });
