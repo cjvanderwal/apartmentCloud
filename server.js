@@ -215,7 +215,8 @@ router.route('/apartment')
     .post(function (req, res) {
         var apartment = new Apartment();
         apartment.name = req.body.name;
-        apartment.address = req.body.address;
+        apartment.lat = req.body.lat;
+        apartment.lon = req.body.lon;
         apartment.company = req.body.company;
         apartment.price = req.body.price;
         apartment.noOfBedroom = req.body.noOfBedroom;
@@ -287,7 +288,8 @@ router.route('/apartment/:id')
             }
 
             apartment.name = req.body.name;
-            apartment.address = req.body.address;
+            apartment.lat = req.body.lat;
+            apartment.lon = req.body.lon;
             apartment.company = req.body.company;
             apartment.price = req.body.price;
             apartment.noOfBedroom = req.body.noOfBedroom;
