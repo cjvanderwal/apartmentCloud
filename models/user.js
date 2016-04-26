@@ -8,8 +8,8 @@ var UserSchema    = new mongoose.Schema({
   bcrypt_pass: {type:String, required:true},
   //authorization_token: {type:String, default:""},
   //favorited_ids: {type:[ObjectId], default:[]},
-  bio: {type:String, default:""}
-  //picture_id: {type:ObjectId, default:"put default image id"}
+  bio: {type:String, default:""},
+  picture_url: {type:String, default:"https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg"}
 });
 
 module.exports = mongoose.model('user', UserSchema);
