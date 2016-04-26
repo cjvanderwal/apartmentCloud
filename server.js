@@ -22,7 +22,33 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 // Use the body-parser package in our application
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
+
+function getParam(param) {
+    return eval('(' + param + ')');
+}
+
+function getErrorMessage(error) {
+    var message = "Error: ";
+
+    if (!error.errors) {
+        message += error.message;
+    }
+    else {
+        var isFirstError = true;
+        for (var key in error.errors) {
+            if (error.errors.hasOwnProperty(key)) {
+                message += (isFirstError ? "" : " " ) + error.errors[key].message;
+                isFirstError = false;
+            }
+        }
+    }
+
+    return message;
+}
 
 //Default route here
 var homeRoute = router.route('/');
@@ -70,7 +96,7 @@ router.route('/users')
       var name = req.body.name;
       var email = req.body.email;
       var pass = req.body.bcrypt_pass;
-      
+
       if(name == null) {
         res.status(100).json({message:"Missing name", data:[]});
       }
@@ -116,7 +142,7 @@ router.route('/users/:id')
             res.status(500).json({message:"GET failed", data: err});
           else if(user == null)
             res.status(404).json({message:"User not found", data: user});
-          else 
+          else
             res.status(200).json({message:"User found", data: user});
       });
     })
@@ -145,11 +171,11 @@ router.route('/users/:id')
                 res.status(200).json({message:"User updated", data:user});
             });
           }
-        
+
       });
     })
     .delete(function(req, res) {
-  
+
       User.findByIdAndRemove(req.params.id, function(err, user) {
           if(err)
             res.status(500).json({message:"DELETE failed", data: err});
@@ -158,6 +184,206 @@ router.route('/users/:id')
           }
           else
             res.status(200).json({message:"User deleted", data: []});
+        });
+    });
+
+// Apartments
+var Apartment = require('./models/apartment.js');
+router.route('/apartment')
+    .get(function (req, res) {
+        Apartment.find(getParam(req.query.where))
+            .select(getParam(req.query.select))
+            .skip(req.query.skip)
+            .limit(req.query.limit)
+            .sort(getParam(req.query.sort))
+            .exec(function (error, apartments) {
+                if (error) {
+                    res.status(500);
+                    res.json({
+                        message: getErrorMessage(error),
+                        data: []
+                    });
+                }
+                else {
+                    res.json({
+                        message: "OK",
+                        data: apartments
+                    });
+                }
+            });
+    })
+    .post(function (req, res) {
+        var apartment = new Apartment();
+        apartment.name = req.body.name;
+        apartment.address = req.body.address;
+        apartment.company = req.body.company;
+        apartment.price = req.body.price;
+        apartment.noOfBedroom = req.body.noOfBedroom;
+        apartment.noOfBathRoom = req.body.noOfBathRoom;
+        apartment.startLease = req.body.startLease;
+        apartment.endLease = req.body.endLease;
+
+        apartment.save(function (error) {
+            if (error) {
+                res.status(500);
+                res.json({
+                    message: getErrorMessage(error),
+                    data: []
+                });
+            }
+            else {
+                res.status(201);
+                res.json({
+                    message: "Apartment added",
+                    data: apartment
+                });
+            }
+        });
+    });
+router.route('/apartment/:id')
+    .get(function (req, res) {
+        Apartment.findById(req.params.id, function (error, apartment) {
+            if (error) {
+                res.status(500);
+                res.json({
+                    message: getErrorMessage(error),
+                    data: []
+                });
+            }
+            else if (apartment == null) {
+                res.status(404);
+                res.json({
+                    message: "Apartment not found",
+                    data: []
+                });
+            }
+            else {
+                res.json({
+                    message: "OK",
+                    data: apartment
+                });
+            }
+        });
+    })
+    .put(function (req, res) {
+        Apartment.findById(req.params.id, function (error, apartment) {
+            if (error) {
+                res.status(500);
+                res.json({
+                    message: getErrorMessage(error),
+                    data: []
+                });
+
+                return;
+            }
+            else if (apartment == null) {
+                res.status(404);
+                res.json({
+                    message: "Apartment not found",
+                    data: []
+                });
+
+                return;
+            }
+
+            apartment.name = req.body.name;
+            apartment.address = req.body.address;
+            apartment.company = req.body.company;
+            apartment.price = req.body.price;
+            apartment.noOfBedroom = req.body.noOfBedroom;
+            apartment.noOfBathRoom = req.body.noOfBathRoom;
+            apartment.startLease = req.body.startLease;
+            apartment.endLease = req.body.endLease;
+
+            apartment.save(function (error) {
+                if (error) {
+                    res.status(500);
+                    res.json({
+                        message: getErrorMessage(error),
+                        data: []
+                    });
+                }
+                else {
+                    res.json({
+                        message: "Apartment updated",
+                        data: apartment
+                    });
+                }
+            });
+        });
+    })
+    .delete(function (req, res) {
+        Apartment.findByIdAndRemove(req.params.id, function (error, apartment) {
+            if (error) {
+                res.status(500);
+                res.json({
+                    message: getErrorMessage(error),
+                    data: []
+                });
+            }
+            else if (apartment == null) {
+                res.status(404);
+                res.json({
+                    message: "Apartment not found",
+                    data: []
+                });
+            }
+            else {
+                res.json({
+                    message: "Apartment deleted",
+                    data: []
+                });
+            }
+        });
+    });
+
+// Comments
+var Comment = require('./models/comment.js');
+router.route('/comment')
+    .get(function (req, res) {
+        Comment.find(getParam(req.query.where))
+            .select(getParam(req.query.select))
+            .skip(req.query.skip)
+            .limit(req.query.limit)
+            .sort(getParam(req.query.sort))
+            .exec(function (error, comments) {
+                if (error) {
+                    res.status(500);
+                    res.json({
+                        message: getErrorMessage(error),
+                        data: []
+                    });
+                }
+                else {
+                    res.json({
+                        message: "OK",
+                        data: comments
+                    });
+                }
+            });
+    })
+    .post(function (req, res) {
+        var comment = new Comment();
+        comment.apartmentId = req.body.apartmentId;
+        comment.userId = req.body.userId;
+        comment.rating = req.body.rating;
+        comment.comment = req.body.comment;
+
+        comment.save(function (error) {
+            if (error) {
+                res.status(500);
+                res.json({
+                    message: getErrorMessage(error),
+                    data: []
+                });
+            }
+            else {
+                res.status(201);
+                res.json({
+                    message: "Comment added",
+                    data: comment
+                });
+            }
         });
     });
 
