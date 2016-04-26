@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 var ApartmentSchema = new mongoose.Schema({
     name: {type: String, required: true},
+    address: {type: String, required: true},
     lat: {type: Number, required: true},
     lon: {type: Number, required: true},
     company: {type: String, required: true},
