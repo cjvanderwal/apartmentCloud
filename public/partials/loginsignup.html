@@ -16,7 +16,9 @@
       <div class="small-6 small-centered columns text-center">
         <h1>Sign up</h1>
         <input ng-model="username" type="text" placeholder="Username" required>
-        <input ng-model="password" type="text" placeholder="Password" required>
+        <input ng-model="password" type="password" placeholder="Password" required>
+        <input ng-model="email" type="text" placeholder="Email" required>
+        <input ng-model="name" type="text" placeholder="Name" required>
         <button class="success button" ng-click="register()">Register</button><br>
         <a ng-click="signIn()">Have an account? Sign in instead</a><br>
         {{registerStatus}}

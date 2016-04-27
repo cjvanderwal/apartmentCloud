@@ -17,6 +17,7 @@ var port = process.env.PORT || 4000;
 var allowCrossDomain = function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST,HEAD, OPTIONS,PUT, DELETE");
   next();
 };
 app.use(allowCrossDomain);
@@ -97,16 +98,16 @@ router.route('/users')
       var email = req.body.email;
       var pass = req.body.bcrypt_pass;
 
-      if(name == null) {
+      if(typeof name === "undefined") {
         res.status(100).json({message:"Missing name", data:[]});
       }
-      else if(email == null) {
+      else if(typeof email === "undefined") {
             res.status(500).json({message:"Missing email", data:[]});
       }
-      else if(username == null) {
+      else if(typeof username === "undefined") {
             res.status(500).json({message:"Invalid username", data:[]});
       }
-      else if(pass == null) {
+      else if(typeof pass === "undefined") {
             res.status(500).json({message:"Invalid e-mail", data:[]});
       }
       else {
@@ -115,6 +116,7 @@ router.route('/users')
         user.name = name;
         user.email = email;
         user.bcrypt_pass = pass;
+        user.picture_url = req.body.picture_url;
 
         user.save(function(err) {
               if(err) {
@@ -216,6 +218,8 @@ router.route('/apartment')
         var apartment = new Apartment();
         apartment.name = req.body.name;
         apartment.address = req.body.address;
+        apartment.lat = req.body.lat;
+        apartment.lon = req.body.lon;
         apartment.company = req.body.company;
         apartment.price = req.body.price;
         apartment.noOfBedroom = req.body.noOfBedroom;
@@ -288,6 +292,8 @@ router.route('/apartment/:id')
 
             apartment.name = req.body.name;
             apartment.address = req.body.address;
+            apartment.lat = req.body.lat;
+            apartment.lon = req.body.lon;
             apartment.company = req.body.company;
             apartment.price = req.body.price;
             apartment.noOfBedroom = req.body.noOfBedroom;

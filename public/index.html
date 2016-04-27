@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./lib/angularjs-datepicker/src/css/angular-datepicker.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 
 
     <!-- Angular Scripts -->
@@ -30,18 +30,19 @@
 
 <div id="widemenu" class="top-bar show-for-medium">
 
-    <div class="top-bar-left">
-        <a href="#/">Some logo</a>
-    </div>
+        <div class="top-bar-left">
+            <a ng-href="#/frontpage">Some logo</a>
+        </div>
 
-    <div class="top-bar-right">
-        <div class="menu">
-            <form>
-                <span><input type="text" name="username" placeholder="username" class="inline_item"></span>
-                <span><input type="text" name="password" placeholder="password" class="inline_item"></span>
-                <span><button class="button" class="menu_item">Login</button></span>
-                <div class="text_right">Don't have an account? <a href="#/login">Register here</a></div>
-            </form>
+        <div class="top-bar-right">
+            <div class="menu">
+                <form>
+                    <span><input type="text" name="username" placeholder="username" class="inline_item"></span>
+                    <span><input type="text" name="password" placeholder="password" class="inline_item"></span>
+                    <span><button class="button" class="menu_item">Login</button></span>
+                </form>
+                <span class="float-right"><a ng-href="#/login">Sign up instead</a></span>
+            </div>
         </div>
     </div>
 </div>
@@ -49,10 +50,6 @@
 <h1 class="title">ApartmentCloud</h1>
 <br>
 
-<a ng-href="#/login">login or signup</a><br>
-<a ng-href="#/aptID">apartment details</a><br>
-<a ng-href="#/userID">user details</a><br>
-<div ng-view></div>
 
 
 <!-- Scripts -->

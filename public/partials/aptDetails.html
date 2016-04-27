@@ -1,19 +1,31 @@
 <div class="aptDetails">
+
   <div class="row double">
 
+    <h1>{{apartment.name}}  <button class="success button" ng-click="saveApartment()">Save as Favorite<br><i class="fa fa-heart" style="font-size:35px;"></i></button></h1>
+    <h3>{{apartment.address}}</h3>
+
     <div class="small-4 columns">
-      <div style="color:white;background-color:black;height:300px;">picture</div>
+      <img src="{{apartment.image}}"</img>
     </div>
 
     <div class="small-4 columns">
-      <div style="color:white;background-color:red;height:150px;">description</div><br>
-      <div style="color:white;background-color:gray;height:150px;">reviews</div>
+      <div style="color:white;background-color:red;height:150px;">description placeholder</div><br>
+      <div style="color:white;background-color:gray;height:150px;">reviews placeholder</div>
     </div>
 
     <div class="small-4 columns">
-      <button class="success button" ng-click="saveApartment()">Save as Favorite<br><i class="fa fa-heart" style="font-size:35px;"></i></button>
-      <div style="color:white;background-color:gray;height:150px;">reviews 2</div>
+      <div style="color:white;background-color:gray;height:150px;">review chart placeholder</div>
     </div>
 
   </div>
+
+  <div class="row">
+    <h1>Information:</h1>
+      <strong>Bedrooms:</strong> {{apartment.noOfBedroom}}<br>
+      <strong>Bathrooms:</strong> {{apartment.noOfBathRoom}}<br>
+      <strong>Lease Date:</strong> {{startDate}} <strong>to</strong> {{endDate}}<br>
+      <strong>Company:</strong> {{apartment.company}}<br>
+    </div>
+
 </div>

@@ -1,5 +1,6 @@
 body {
   font-family: $font-primary;
+  // background-image: url('../data/background.jpg');
 }
 
 .title {
@@ -73,4 +74,24 @@ h1 {
 
 #required {
   color: red;
+}
+
+img {
+  border: 1px solid black;
+}
+
+#changeInfo {
+  border: 1px solid black;
+}
+
+#favApts {
+  ul {
+    list-style: none;
+    white-space: nowrap;
+    overflow: scroll;
+  }
+  li {
+    margin: 20px;
+    display: inline;
+  }
 }
