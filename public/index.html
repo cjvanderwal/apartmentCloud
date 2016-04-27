@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./lib/angularjs-datepicker/src/css/angular-datepicker.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 
 
     <!-- Angular Scripts -->
@@ -28,7 +28,7 @@
     <div id="widemenu" class="top-bar show-for-medium">
 
         <div class="top-bar-left">
-            Some logo
+            <a ng-href="#/frontpage">Some logo</a>
         </div>
 
         <div class="top-bar-right">
@@ -38,6 +38,7 @@
                     <span><input type="text" name="password" placeholder="password" class="inline_item"></span>
                     <span><button class="button" class="menu_item">Login</button></span>
                 </form>
+                <span class="float-right"><a ng-href="#/login">Sign up instead</a></span>
             </div>
         </div>
     </div>
@@ -46,8 +47,8 @@
     <br>
 
     <a ng-href="#/login">login or signup</a><br>
-    <a ng-href="#/aptID">apartment details</a><br>
-    <a ng-href="#/userID">user details</a><br>
+    <a ng-href="#/apartment/571fe4d930685a080f7c6ce5">apartment details</a><br>
+    <a ng-href="#/user/571fdd1a0e27e61d0755b3f8">user details</a><br>
   <div ng-view></div>
 
 

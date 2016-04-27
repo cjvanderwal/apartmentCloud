@@ -6,11 +6,11 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'partials/loginSignup.html',
     controller: 'LoginSignupController'
   }).
-  when('/aptID', {
+  when('/apartment/:aptID', {
     templateUrl: 'partials/aptDetails.html',
     controller: 'ApartmentDetailsController'
   }).
-  when('/userID', {
+  when('/user/:userID', {
     templateUrl: 'partials/userDetails.html',
     controller: 'UserDetailsController'
   }).
@@ -23,6 +23,6 @@ app.config(['$routeProvider', function($routeProvider) {
     controller: 'FrontPageController'
   }).
   otherwise({
-    redirectTo: '/login'
+    redirectTo: '/frontpage'
   });
 }]);
