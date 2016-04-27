@@ -1,11 +1,11 @@
 {
-  "name": "Final Project",
+  "name": "FinalProject",
   "version": "1.0.0",
   "homepage": "https://github.com/cjvanderwal/CS498_FinalProject",
   "authors": [
     "cjvanderwal <cjvanderwal33@gmail.com>",
     "wrenj13 <wrenj13@gmail.com>",
-    "bkosciarz <bart.kosciarz@gmail.com>"
+    "bkosciarz <bart.kosciarz@gmail.com>",
     "kinyanng <kinyanng@gmail.com>"
   ],
   "dependencies": {
