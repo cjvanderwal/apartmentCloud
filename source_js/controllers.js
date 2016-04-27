@@ -75,7 +75,54 @@ apartmentCloudControllers.controller('SubleaseController', ['$scope', '$http', '
   // };
 }]);
 
-apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', function($scope, $http) {
+apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 'Map', function($scope, $http, Map) {
+  $http.get("http://localhost:4000/api/apartment/") // ./data/test.json
+      .then(function(apartments) {
+        $scope.apartments = apartments.data;
+        $scope.numBedrooms = "";
+        $scope.numBathrooms = "";
+        Map.initialize($scope);
+      })
+      .catch(function(err) {
+        console.log("failure");
+      });
+
+  $scope.filterRange = function(string) {
+    var nowhitespace = string.replace(/ /g,'');
+    return nowhitespace.split("-");
+  };
+  $scope.filterBedrooms = function(apt) {
+    if ($scope.numBedrooms === undefined || $scope.numBedrooms.length == 0) {
+      return true;
+    }
+    var bedStrings = $scope.filterRange($scope.numBedrooms);
+    if (bedStrings.length != 2) {
+      return true; // TODO error message
+    }
+    return apt.noOfBedroom >= parseInt(bedStrings[0]) && apt.noOfBedroom <= parseInt(bedStrings[1]);
+  };
+  $scope.filterBathrooms = function(apt) {
+    if ($scope.numBathrooms === undefined || $scope.numBathrooms.length == 0) {
+      return true;
+    }
+    var bathStrings = $scope.filterRange($scope.numBathrooms);
+    if (bathStrings.length != 2) {
+      return true; // TODO error message
+    }
+    return apt.noOfBathRoom >= parseInt(bathStrings[0]) && apt.noOfBathRoom <= parseInt(bathStrings[1]);
+  };
+  $scope.filterPrice = function(apt) {
+    if ($scope.priceLower === undefined || $scope.priceUpper === undefined) {
+      return true; // TODO error message
+    }
+    return apt.price >= $scope.priceLower && apt.price <= $scope.priceUpper;
+  };
+  $scope.filterMap = function(apt) {
+    if ($scope.currPoly === undefined) {
+      return true;
+    }
+    return google.maps.geometry.poly.containsLocation(new google.maps.LatLng(apt.lat, apt.lon), $scope.currPoly);
+  }
   $scope.init = function() {
     $(document).foundation();
   };

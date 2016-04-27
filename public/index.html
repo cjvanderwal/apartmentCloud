@@ -21,43 +21,48 @@
     <script src="./js/controllers.js"></script>
     <script src="./js/services.js"></script>
     <script src="./lib/angularjs-datepicker/src/js/angular-datepicker.js"></script>
+    <!--Consulted:
+    https://developers.google.com/maps/documentation/javascript/examples/poly-containsLocation
+    -->
 </head>
 
 <body ng-app="apartmentCloud">
 
-    <div id="widemenu" class="top-bar show-for-medium">
+<div id="widemenu" class="top-bar show-for-medium">
 
-        <div class="top-bar-left">
-            Some logo
-        </div>
+    <div class="top-bar-left">
+        <a href="#/">Some logo</a>
+    </div>
 
-        <div class="top-bar-right">
-            <div class="menu">
-                <form>
-                    <span><input type="text" name="username" placeholder="username" class="inline_item"></span>
-                    <span><input type="text" name="password" placeholder="password" class="inline_item"></span>
-                    <span><button class="button" class="menu_item">Login</button></span>
-                </form>
-            </div>
+    <div class="top-bar-right">
+        <div class="menu">
+            <form>
+                <span><input type="text" name="username" placeholder="username" class="inline_item"></span>
+                <span><input type="text" name="password" placeholder="password" class="inline_item"></span>
+                <span><button class="button" class="menu_item">Login</button></span>
+                <div class="text_right">Don't have an account? <a href="#/login">Register here</a></div>
+            </form>
         </div>
     </div>
-    <br>
-    <h1 class="title">ApartmentCloud</h1>
-    <br>
+</div>
+<br>
+<h1 class="title">ApartmentCloud</h1>
+<br>
 
-    <a ng-href="#/login">login or signup</a><br>
-    <a ng-href="#/aptID">apartment details</a><br>
-    <a ng-href="#/userID">user details</a><br>
-  <div ng-view></div>
+<a ng-href="#/login">login or signup</a><br>
+<a ng-href="#/aptID">apartment details</a><br>
+<a ng-href="#/userID">user details</a><br>
+<div ng-view></div>
 
 
-    <!-- Scripts -->
-    <script src="./lib/jquery-2.1.3.min/index.js"></script>
-    <script src="./foundation6_lib/js/foundation.min.js"></script>
-    <script src="./js/script.js"></script>
-    <script>
+<!-- Scripts -->
+<script src="./lib/jquery-2.1.3.min/index.js"></script>
+<script src="./foundation6_lib/js/foundation.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHZTfrnHag_ZO4AXVmeMzMdfXzHGmkZmg&libraries=drawing"></script>
+<script src="./js/script.js"></script>
+<script>
     $(document).foundation();
-    </script>
-    <script src="http://localhost:35729/livereload.js"></script>
+</script>
+<script src="http://localhost:35729/livereload.js"></script>
 </body>
 </html>
