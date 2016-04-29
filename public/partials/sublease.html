@@ -1,63 +1,65 @@
-<form name="addSublease" novalidate>
-  Name <span id="required">*</span>
-	<div class="row">
-		<div class="form-group">
-	    <div class="small-6 columns">
-			  <input ng-model="name" name="name" type="text" class="form-control" required>
-				<p ng-show="addSublease.name.$invalid" class="help-block">A name is required.</p>
-	    </div>
-		</div>
-	</div>
-  Address <span id="required">*</span>
-  <div class="row">
-    <div class="small-6 columns">
-      <input ng-model="address" name="address" type="text" class="form-control" required>
-      <p ng-show="addSublease.address.$invalid" class="help-block">An address is required.</p>
-    </div>
-  </div>
-  Price <span id="required">*</span>
-  <div class="row">
-		<div class="form-group">
-	    <div class="small-6 columns">
-	      <input ng-model="price" name="price" type="text" class="form-control" required>
-				<p ng-show="addSublease.price.$invalid" class="help-block">A price is required.</p>
-	    </div>
-		</div>
-  </div>
-  No. of Bedrooms
-  <div class="row">
-    <div class="form-group">
-	    <div class="small-6 columns">
-	      <input ng-model="bedrooms" name="bedrooms" type="text" class="form-control" required>
-				<p ng-show="addSublease.bedrooms.$invalid" class="help-block"># of bedrooms is required.</p>
-	    </div>
-		</div>
-  </div>
-  No. of Bathrooms
-  <div class="row">
-    <div class="form-group">
-	    <div class="small-6 columns">
-	      <input ng-model="bathrooms" name="bathrooms" type="text" class="form-control" required>
-				<p ng-show="addSublease.bathrooms.$invalid" class="help-block"># of bathrooms is required.</p>
-	    </div>
-		</div>
-  </div>
-  Lease Date
-  <div class="row">
-    <div class="form-group">
-      <div class="small-3 columns">
-        <input ng-model="startDate" name="startDate" type="text" class="form-control" required>
-        <p ng-show="addSublease.startDate.$invalid" class="help-block">Start date of lease is required.</p>
-      </div>
-      <div class="small-3 columns end">
-        <input ng-model="endDate" name="endDate" type="text" class="form-control" required>
-        <p ng-show="addSublease.endDate.$invalid" class="help-block">End date of lease is required.</p>
+<div id="sublease">
+  <form name="addSublease" novalidate>
+    Name <span id="required">*</span>
+  	<div class="row">
+  		<div class="form-group">
+  	    <div class="small-6 columns">
+  			  <input ng-model="name" name="name" type="text" class="form-control" required>
+  				<p ng-show="addSublease.name.$invalid" class="help-block">A name is required.</p>
+  	    </div>
+  		</div>
+  	</div>
+    Address <span id="required">*</span>
+    <div class="row">
+      <div class="small-6 columns">
+        <input ng-model="address" name="address" type="text" class="form-control" required>
+        <p ng-show="addSublease.address.$invalid" class="help-block">An address is required.</p>
       </div>
     </div>
-  </div>
-  <div class="row text-center">
-	  <div class="small-6 text-center columns">
-	    <button id="submit" class="button info" ng-click="addSublease()">Create</button>
-	  </div>
-	</div>
-</form>
+    Price <span id="required">*</span>
+    <div class="row">
+  		<div class="form-group">
+  	    <div class="small-6 columns">
+  	      <input ng-model="price" name="price" type="text" class="form-control" required>
+  				<p ng-show="addSublease.price.$invalid" class="help-block">A price is required.</p>
+  	    </div>
+  		</div>
+    </div>
+    No. of Bedrooms
+    <div class="row">
+      <div class="form-group">
+  	    <div class="small-6 columns">
+  	      <input ng-model="bedrooms" name="bedrooms" type="text" class="form-control" required>
+  				<p ng-show="addSublease.bedrooms.$invalid" class="help-block"># of bedrooms is required.</p>
+  	    </div>
+  		</div>
+    </div>
+    No. of Bathrooms
+    <div class="row">
+      <div class="form-group">
+  	    <div class="small-6 columns">
+  	      <input ng-model="bathrooms" name="bathrooms" type="text" class="form-control" required>
+  				<p ng-show="addSublease.bathrooms.$invalid" class="help-block"># of bathrooms is required.</p>
+  	    </div>
+  		</div>
+    </div>
+    Lease Date
+    <div class="row">
+      <div class="form-group">
+        <div class="small-3 columns">
+          <input ng-model="startDate" name="startDate" type="text" class="form-control" required>
+          <p ng-show="addSublease.startDate.$invalid" class="help-block">Start date of lease is required.</p>
+        </div>
+        <div class="small-3 columns end">
+          <input ng-model="endDate" name="endDate" type="text" class="form-control" required>
+          <p ng-show="addSublease.endDate.$invalid" class="help-block">End date of lease is required.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+  	  <div class="small-6 text-center columns">
+  	    <button id="submit" class="button info" ng-click="addSublease()">Create</button>
+  	  </div>
+  	</div>
+  </form>
+</div>

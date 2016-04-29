@@ -1,96 +1,123 @@
-body {
-  font-family: $font-primary;
-  // background-image: url('../data/background.jpg');
-}
-
-.title {
-  font-family: $font-secondary;
-}
-
-h1 {
+// app wide CSS
+html * {
   font-family: $font-primary;
 }
-
-.inline_item {
-  display: inline;
-}
-
-.text_right {
-  text-align: right;
-}
-
-.inline_form {
-  display: inline;
-  width: 80%;
-  right: 0;
-  position: absolute;
-  @include vert_center;
-}
-
-.form_element {
-  position: relative;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.right_element {
-  position: absolute;
-  right: 0;
-  @include vert_center;
-}
-
-.fixed_width {
-  width: 75px;
-}
-
-.center {
-  text-align: center;
-}
-
-.go_button {
-  min-width: 300px;
-  width: 30%;
-  height: 80px;
-  font-size: 36px;
-  line-height: 20px;
-}.grow {
-   transition: all .2s ease-in-out;
- }
-
-.grow:hover {
-  transform: scale(1.1);
-}
-
-.grow {
-  transition: all .2s ease-in-out;
-  padding: 10px;
-}
-
-.grow:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-#required {
-  color: red;
-}
-
 img {
   border: 1px solid black;
 }
-
-#changeInfo {
-  border: 1px solid black;
+i {
+  color: $my_green;
 }
+.button {
+  background-color: $my_green;
+}
+#text {
+  color: $my_white;
+}
+//---------------------------------
 
-#favApts {
-  ul {
-    list-style: none;
-    white-space: nowrap;
-    overflow: scroll;
-  }
-  li {
-    margin: 20px;
+
+// app wide navbar
+#navbar {
+  background-color: $my_black;
+  .inline_item {
     display: inline;
   }
+
 }
+//---------------------------------
+
+
+// frontpage partial where users browse and filter apartments
+#frontpage {
+  .inline_item {
+    display: inline;
+  }
+
+  .text_right {
+    text-align: right;
+  }
+
+  .inline_form {
+    display: inline;
+    width: 80%;
+    right: 0;
+    position: absolute;
+    @include vert_center;
+  }
+
+  .form_element {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .right_element {
+    position: absolute;
+    right: 0;
+    @include vert_center;
+  }
+
+  .fixed_width {
+    width: 75px;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .go_button {
+    min-width: 300px;
+    width: 30%;
+    height: 80px;
+    font-size: 36px;
+    line-height: 20px;
+  }.grow {
+     transition: all .2s ease-in-out;
+   }
+
+  .grow:hover {
+    transform: scale(1.1);
+  }
+
+  .grow {
+    transition: all .2s ease-in-out;
+    padding: 10px;
+  }
+
+  .grow:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}
+//---------------------------------
+
+
+//sublease partial where users can create their own sublease
+#sublease {
+  #required {
+    color: red;
+  }
+}
+//---------------------------------
+
+
+//userDetails partial where users can browse their profile/fav apts/etc
+#userDetails {
+  #changeInfo {
+    border: 1px solid black;
+  }
+
+  #favApts {
+    ul {
+      list-style: none;
+      white-space: nowrap;
+      overflow: scroll;
+    }
+    li {
+      margin: 20px;
+      display: inline;
+    }
+  }
+}
+//---------------------------------

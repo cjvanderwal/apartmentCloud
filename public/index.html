@@ -28,10 +28,12 @@
 
 <body ng-app="apartmentCloud">
 
-<div id="widemenu" class="top-bar show-for-medium">
+<div id="navbar" class="top-bar show-for-medium">
 
         <div class="top-bar-left">
-            <h1 class="title"><a ng-href="#/frontpage">ApartmentCloud</a></h1>
+          <div class="text-center">
+            <a ng-href="#/frontpage"><i class="fa fa-home" style="font-size:65px;"></i></a>
+          </div>
         </div>
 
         <div class="top-bar-right">
@@ -41,7 +43,7 @@
                     <span><input type="text" name="password" placeholder="password" class="inline_item"></span>
                     <span><button class="button" class="menu_item">Login</button></span>
                 </form>
-                <span class="float-right"><a ng-href="#/login">Sign up instead</a></span>
+                <span class="float-right"><a id="text" ng-href="#/login">Sign up instead</a></span>
             </div>
         </div>
     </div>
