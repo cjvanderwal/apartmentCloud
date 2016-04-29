@@ -4,7 +4,7 @@
     <div class="small-3 columns text-center">
       <img src="{{user.picture_url}}"></img><br>
       <h4>{{user.name}}</h4>
-      <a class="success button" ng-href="#/sublease">Create a sublease</a>
+      <a class="button" ng-href="#/sublease">Create a sublease</a>
     </div>
 
     <div class="small-7 columns">
@@ -32,7 +32,7 @@
       <div id="changeInfo" class="small-2 columns">
         <a class="float-right" ng-click="changePassword = !changePassword">X</a><br>
         <input ng-model="newPassword" type="text" placeholder="password">
-        <button class="success button" ng-click="updatePassword()">Change</button><br>
+        <button class="button" ng-click="updatePassword()">Change</button><br>
         {{passStatus}}
       </div>
     </div>
@@ -40,7 +40,7 @@
       <div id="changeInfo" class="small-2 columns">
         <a class="float-right" ng-click="changePicture = !changePicture">X</a><br>
         <input ng-model="newPicture" type="text" placeholder="picture URL">
-        <button class="success button" ng-click="updatePicture()">Change</button><br>
+        <button class="button" ng-click="updatePicture()">Change</button><br>
         {{picStatus}}
       </div>
     </div>

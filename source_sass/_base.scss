@@ -1,24 +1,46 @@
 // app wide CSS
 html * {
+  color: $my_white;
   font-family: $font-primary;
 }
+body {
+  background-color: $my_gray;
+}
 img {
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 i {
   color: $my_green;
 }
 .button {
+  color: $my_black;
   background-color: $my_green;
+  border: 1px solid $my_black;
+  border-radius: 3px;
+  &:hover {
+    background-color: $my_green;
+  }
 }
-#text {
+input {
+  border: 1px solid $my_black;
+  border-radius: 3px;
+}
+a {
   color: $my_white;
+  &:hover {
+    color: $my_white;
+    text-decoration: underline;
+  }
 }
 //---------------------------------
 
 
 // app wide navbar
 #navbar {
+  #text {
+    color: $my_white;
+  }
   background-color: $my_black;
   .inline_item {
     display: inline;
@@ -121,3 +143,6 @@ i {
   }
 }
 //---------------------------------
+
+#aptDetails {
+}
