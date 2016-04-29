@@ -97,12 +97,11 @@ apartmentCloudControllers.controller('SubleaseController', ['$scope', '$http', '
 }]);
 
 apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 'Map', function($scope, $http, Map) {
-  $http.get("http://localhost:4000/api/apartment/") // ./data/test.json
+  $http.get("http://localhost:4000/api/apartment/") // ./data/test.json http://localhost:4000/api/apartment/
       .then(function(apartments) {
         $scope.apartments = apartments.data;
         $scope.numBedrooms = "";
         $scope.numBathrooms = "";
-        Map.initialize($scope);
       })
       .catch(function(err) {
         console.log("failure");
@@ -145,6 +144,7 @@ apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 
     return google.maps.geometry.poly.containsLocation(new google.maps.LatLng(apt.lat, apt.lon), $scope.currPoly);
   }
   $scope.init = function() {
+    Map.initialize($scope);
     $(document).foundation();
   };
   $scope.init();
