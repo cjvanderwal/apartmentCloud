@@ -11,6 +11,14 @@ apartmentCloudServices.factory('Apartments', function($http) {
   }
 });
 
+apartmentCloudServices.factory('Comments', function($http) {
+  return {
+    getByApt: function(id) {
+      return $http.get('http://localhost:4000/api/comment?where={"apartmentId": '+'"'+id+'"'+'}');
+    }
+  }
+});
+
 apartmentCloudServices.factory('Users', function($http) {
   return {
     getDetails : function(id) {

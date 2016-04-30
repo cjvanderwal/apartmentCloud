@@ -33,6 +33,9 @@ a {
     text-decoration: underline;
   }
 }
+#partials {
+  padding-top: 50px;
+}
 //---------------------------------
 
 
@@ -47,6 +50,24 @@ a {
   }
 
 }
+//---------------------------------
+
+
+// login partial where users login and signup
+#loginsignup {
+  #title {
+    color: $my_green;
+  }
+  #form {
+    padding: 50px;
+    border: 1px solid $my_black;
+    border-radius: 20px;
+  }
+  #required {
+    color: red;
+  }
+}
+
 //---------------------------------
 
 
@@ -126,8 +147,11 @@ a {
 
 //userDetails partial where users can browse their profile/fav apts/etc
 #userDetails {
+  img {
+    color: white;
+  }
   #changeInfo {
-    border: 1px solid black;
+    border: 1px solid $my_black;
   }
 
   #favApts {
@@ -145,4 +169,33 @@ a {
 //---------------------------------
 
 #aptDetails {
+  #starRating {
+    font-size: 30px;
+  }
+  #one {
+    color: red;
+  }
+  #two {
+    color: orange;
+  }
+  #three {
+    color: yellow;
+  }
+  #four {
+    color: #bfff00;
+  }
+  #five {
+    color: #00e600;
+  }
+
+  #comment {
+    border-bottom: 1px solid $my_white;
+  }
+
+  #footnote {
+    color: white;
+  }
+  #rating {
+    color: $my_green;
+  }
 }

@@ -34,7 +34,8 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
 
 }]);
 
-apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$http', '$routeParams', 'Apartments', function($scope, $http, $routeParams, Apartments) {
+apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$http', '$routeParams', 'Apartments', 'Comments', function($scope, $http, $routeParams, Apartments, Comments) {
+  $scope.ratingsBreakdown = [0,0,0,0,0]
 
   // get the current apartment object from the backend
   Apartments.getDetails($routeParams.aptID).success(function(response) {
@@ -42,6 +43,17 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
 
     $scope.startDate = $scope.apartment.startLease.split('T')[0];
     $scope.endDate = $scope.apartment.endLease.split('T')[0];
+  });
+
+  Comments.getByApt($routeParams.aptID).success(function(response) {
+    $scope.commentList = response.data;
+
+    for (var i = 0; i < $scope.commentList.length; i++) {
+      var curr_rating = $scope.commentList[i].rating;
+      if (curr_rating > 0 && curr_rating <= 5) {
+        $scope.ratingsBreakdown[curr_rating-1] += 1
+      }
+    }
   });
 
 
