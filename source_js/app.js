@@ -1,4 +1,4 @@
-var app = angular.module('apartmentCloud', ['ngRoute', 'apartmentCloudControllers', 'apartmentCloudServices']);
+var app = angular.module('apartmentCloud', ['ngRoute', 'slickCarousel', 'apartmentCloudControllers', 'apartmentCloudServices']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.

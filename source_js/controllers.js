@@ -35,7 +35,8 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
 }]);
 
 apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$http', '$routeParams', 'Apartments', 'Comments', function($scope, $http, $routeParams, Apartments, Comments) {
-  $scope.ratingsBreakdown = [0,0,0,0,0]
+  $scope.ratingsBreakdown = [0,0,0,0,0];
+  $scope.labels = ['1 star', '2 stars', '3 stars', '4 stars', '5 stars'];
 
   // get the current apartment object from the backend
   Apartments.getDetails($routeParams.aptID).success(function(response) {
