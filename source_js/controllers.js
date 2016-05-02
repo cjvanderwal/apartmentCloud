@@ -38,6 +38,27 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
   $scope.ratingsBreakdown = [0,0,0,0,0];
   $scope.labels = ['1 star', '2 stars', '3 stars', '4 stars', '5 stars'];
 
+  $scope.comment_title = "";
+  $scope.comment_text = "";
+  $scope.comment_rating = 0;
+  $scope.ratingStatus = "";
+
+  $scope.addComment = function() {
+    if ($scope.comment_title === "" || $scope.comment_text === "" || $scope.comment_rating === 0) {
+      if ($scope.comment_rating === 0) {
+        $scope.ratingStatus = "Please rate the apartment!"
+      }
+      return;
+    }
+    else {
+      Comments.add({apartmentId: $scope.apartment.apartmentId,
+                    userID: _____,
+                    rating: $scope.comment_rating,
+                    title: $scope.comment_title,
+                    comment: $scope.comment_text });
+    }
+  }
+
   // get the current apartment object from the backend
   Apartments.getDetails($routeParams.aptID).success(function(response) {
     $scope.apartment = response.data;

@@ -18,6 +18,9 @@ apartmentCloudServices.factory('Comments', function($http) {
   return {
     getByApt: function(id) {
       return $http.get('http://localhost:4000/api/comment?where={"apartmentId": '+'"'+id+'"'+'}');
+    },
+    add: function(obj) {
+      return $http.post('http://localhost:4000/api/comment/', obj)
     }
   }
 });
