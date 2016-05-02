@@ -4,18 +4,18 @@
     <div class="small-12 columns">
         <div class="small-8 columns">
             <form>
-                <div class="form_element"># Bedrooms<input ng-model="numBedrooms" type="text" placeholder="e.g. 1-3" class="inline_form"></div>
-                <div class="form_element"># Bathrooms<input ng-model="numBathrooms" type="text" placeholder="e.g. 1-3" class="inline_form"></div>
+                <div class="form_element"># Bedrooms<input id="input" ng-model="numBedrooms" type="text" placeholder="e.g. 1-3" class="inline_form"></div>
+                <div class="form_element"># Bathrooms<input id="input" ng-model="numBathrooms" type="text" placeholder="e.g. 1-3" class="inline_form"></div>
                 <div class="form_element">
                     Price per month
                     <div class="inline_form">
-                        <div class="right_element">
-                            $<input ng-model="priceLower" type="text" placeholder="300" class="fixed_width inline_item"> - $<input ng-model="priceUpper" type="text" placeholder="600" class="fixed_width inline_item">
+                        <div class="left_element">
+                            $<input id="input" ng-model="priceLower" type="text" placeholder="300" class="fixed_width inline_item">  -  $<input id="input" ng-model="priceUpper" type="text" placeholder="600" class="fixed_width inline_item">
                         </div>
                     </div>
                 </div>
                 <div class="form_element">Company
-                    <select class="inline_form" ng-options="company for company in (apartments.data | unique)" ng-model="selectedCompany">
+                    <select id="input" class="inline_form" ng-options="company for company in (apartments.data | unique)" ng-model="selectedCompany">
                         <option value="">Select an apartment</option>
                     </select>
                 </div>

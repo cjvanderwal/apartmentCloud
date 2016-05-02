@@ -21,7 +21,7 @@
         </ul>
       </div>
       {{user.bio}} -->
-      <slick infinite=true slides-to-show=3 slides-to-scroll=3>
+      <slick infinite=true dots=true slides-to-show=4 slides-to-scroll=2>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
@@ -31,7 +31,7 @@
       </slick>
     </div>
 
-    <div ng-show="!changePassword && !changePicture">
+    <div class="text-right" ng-show="!changePassword && !changePicture">
       <button class="button" ng-click="changePassword = !changePassword">Change Password</button>
       <button class="button" ng-click="changePicture = !changePicture">Change Picture</button>
     </div>
@@ -39,7 +39,7 @@
     <div ng-show="changePassword">
       <div id="changeInfo" class="small-2 columns">
         <a class="float-right" ng-click="changePassword = !changePassword">X</a><br>
-        <input ng-model="newPassword" type="text" placeholder="password">
+        <input id="input" ng-model="newPassword" type="text" placeholder="password">
         <button class="button" ng-click="updatePassword()">Change</button><br>
         {{passStatus}}
       </div>
@@ -47,7 +47,7 @@
     <div ng-show="changePicture">
       <div id="changeInfo" class="small-2 columns">
         <a class="float-right" ng-click="changePicture = !changePicture">X</a><br>
-        <input ng-model="newPicture" type="text" placeholder="picture URL">
+        <input id="input" ng-model="newPicture" type="text" placeholder="picture URL">
         <button class="button" ng-click="updatePicture()">Change</button><br>
         {{picStatus}}
       </div>

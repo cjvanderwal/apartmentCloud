@@ -7,8 +7,11 @@ body {
   background-color: $my_gray;
 }
 img {
-  border: 2px solid black;
+  border: 2px solid $my_black;
   border-radius: 5px;
+}
+#input {
+  border: 2px solid $my_black;
 }
 i {
   color: $my_green;
@@ -151,6 +154,9 @@ a {
 
 //userDetails partial where users can browse their profile/fav apts/etc
 #userDetails {
+  .slick-next {
+    right: -10px;
+  }
   img {
     color: white;
   }
