@@ -161,7 +161,7 @@ router.route('/users/:id')
                 user.bcrypt_pass = req.body.bcrypt_pass;
                 //user.favorited_ids = req.body.favorited_ids;
                 user.bio = req.body.bio;
-                //user.picture_id = req.body.picture_id;
+                user.picture_url = req.body.picture_url;
                 user.save(function (err) {
                     if (err) {
                         if (err.code == 11000)

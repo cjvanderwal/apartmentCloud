@@ -89,7 +89,7 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http'
   $scope.updatePicture = function() {
     $scope.user.picture_url = $scope.newPicture;
     Users.modifyUser($scope.user).success(function(response) {
-      $scope.picStatu = "picture updated!";
+      $scope.picStatus = "picture updated!";
     });
   };
 
