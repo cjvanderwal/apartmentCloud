@@ -3,24 +3,12 @@
 
     <div class="small-3 columns text-center">
       <img src="{{user.picture_url}}"></img><br>
-      <h4>{{user.name}}</h4>
+      <h4 id="title">{{user.name}}</h4>
       <a class="button" ng-href="#/sublease">Create a sublease</a>
     </div>
 
     <div class="small-7 columns">
-      <!-- <h2>Favorite Apartments</h2>
-      <div id="favApts">
-        <ul>
-          <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-          <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-          <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-          <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-          <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-          <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-          <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-        </ul>
-      </div>
-      {{user.bio}} -->
+      <h2 id="title">Favorite Apartments</h2>
       <slick infinite=true dots=true slides-to-show=4 slides-to-scroll=2>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>

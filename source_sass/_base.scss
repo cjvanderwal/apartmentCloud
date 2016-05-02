@@ -3,6 +3,12 @@ html * {
   color: $my_white;
   font-family: $font-primary;
 }
+#title {
+  font-family: $font-secondary;
+}
+#logo {
+  font-family: $font-logo;
+}
 body {
   background-color: $my_gray;
 }
@@ -81,6 +87,9 @@ a {
   }
   #company {
     color: $my_green;
+  }
+  #aptform {
+    margin-bottom: 50px;
   }
   .inline_item {
     display: inline;
