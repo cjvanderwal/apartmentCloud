@@ -14,11 +14,11 @@ var app = express();
 var port = process.env.PORT || 4000;
 
 //Allow CORS so that backend and frontend could pe put on different servers
-var allowCrossDomain = function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST,HEAD, OPTIONS,PUT, DELETE");
-  next();
+var allowCrossDomain = function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST,HEAD, OPTIONS,PUT, DELETE");
+    next();
 };
 app.use(allowCrossDomain);
 
@@ -54,8 +54,8 @@ function getErrorMessage(error) {
 //Default route here
 var homeRoute = router.route('/');
 
-homeRoute.get(function(req, res) {
-  res.status(200).json({ message: 'Hello World!', data: [] });
+homeRoute.get(function (req, res) {
+    res.status(200).json({message: 'Hello World!', data: []});
 });
 
 // All our routes will start with /api
@@ -65,132 +65,133 @@ app.use('/api', router);
 var User = require('./models/user.js');
 //200 (success), 201 (created), 404 (not found), 500 (server error).
 router.route('/users')
-    .get(function(req, res) {
+    .get(function (req, res) {
         var _where = null;
         var _sort = null;
         var _select = null;
         var _skip = null;
         var _limit = null;
         var _count = null;
-        if(req.query.where)
-          _where = eval("("+req.query.where+")");
-        if(req.query.sort)
-          _sort = eval("("+req.query.sort+")");
-        if(req.query.select)
-          _select = eval("("+req.query.select+")");
-        if(req.query.skip)
-          _skip = eval("("+req.query.skip+")");
-        if(req.query.limit)
-          _limit = eval("("+req.query.limit+")");
-        if(req.query.count)
-          _count = eval("("+req.query.count+")");
+        if (req.query.where)
+            _where = eval("(" + req.query.where + ")");
+        if (req.query.sort)
+            _sort = eval("(" + req.query.sort + ")");
+        if (req.query.select)
+            _select = eval("(" + req.query.select + ")");
+        if (req.query.skip)
+            _skip = eval("(" + req.query.skip + ")");
+        if (req.query.limit)
+            _limit = eval("(" + req.query.limit + ")");
+        if (req.query.count)
+            _count = eval("(" + req.query.count + ")");
 
-      User.find(function(err, users) {
-            if(err)
-              res.status(500).json({message:"Cannot GET users", data:err});
+        User.find(function (err, users) {
+            if (err)
+                res.status(500).json({message: "Cannot GET users", data: err});
             else
-              res.status(200).json({message:"OK", data:users});
-      }).find(_where).sort(_sort).select(_select).skip(_skip).limit(_limit).count(_count);
+                res.status(200).json({message: "OK", data: users});
+        }).find(_where).sort(_sort).select(_select).skip(_skip).limit(_limit).count(_count);
     })
-    .post(function(req, res) {
-      var username = req.body.username;
-      var name = req.body.name;
-      var email = req.body.email;
-      var pass = req.body.bcrypt_pass;
+    .post(function (req, res) {
+        var username = req.body.username;
+        var name = req.body.name;
+        var email = req.body.email;
+        var pass = req.body.bcrypt_pass;
 
-      if(typeof name === "undefined") {
-        res.status(100).json({message:"Missing name", data:[]});
-      }
-      else if(typeof email === "undefined") {
-            res.status(500).json({message:"Missing email", data:[]});
-      }
-      else if(typeof username === "undefined") {
-            res.status(500).json({message:"Invalid username", data:[]});
-      }
-      else if(typeof pass === "undefined") {
-            res.status(500).json({message:"Invalid e-mail", data:[]});
-      }
-      else {
-        var user = new User();
-        user.username = username;
-        user.name = name;
-        user.email = email;
-        user.bcrypt_pass = pass;
-        user.picture_url = req.body.picture_url;
+        if (typeof name === "undefined") {
+            res.status(100).json({message: "Missing name", data: []});
+        }
+        else if (typeof email === "undefined") {
+            res.status(500).json({message: "Missing email", data: []});
+        }
+        else if (typeof username === "undefined") {
+            res.status(500).json({message: "Invalid username", data: []});
+        }
+        else if (typeof pass === "undefined") {
+            res.status(500).json({message: "Invalid e-mail", data: []});
+        }
+        else {
+            var user = new User();
+            user.username = username;
+            user.name = name;
+            user.email = email;
+            user.bcrypt_pass = pass;
+            user.picture_url = req.body.picture_url;
 
-        user.save(function(err) {
-              if(err) {
-                if(err.code == 11000)
-                    res.status(500).json({message:"Duplicate user", data: err});
-                else
-                  res.status(500).json({message:"Error", data: err});
-              }
-              else {
-                res.status(201).json({message:"User created", data: user});
-              }
-        });
-      }
+            user.save(function (err) {
+                if (err) {
+                    if (err.code == 11000)
+                        res.status(500).json({message: "Duplicate user", data: err});
+                    else
+                        res.status(500).json({message: "Error", data: err});
+                }
+                else {
+                    res.status(201).json({message: "User created", data: user});
+                }
+            });
+        }
 
     })
-    .options(function(req, res) {
-      res.writeHead(200);
-      res.end();
+    .options(function (req, res) {
+        res.writeHead(200);
+        res.end();
     });
 
 router.route('/users/:id')
-    .get(function(req, res) {
-      User.findById(req.params.id, function(err, user) {
-          if(err)
-            res.status(500).json({message:"GET failed", data: err});
-          else if(user == null)
-            res.status(404).json({message:"User not found", data: user});
-          else
-            res.status(200).json({message:"User found", data: user});
-      });
+    .get(function (req, res) {
+        User.findById(req.params.id, function (err, user) {
+            if (err)
+                res.status(500).json({message: "GET failed", data: err});
+            else if (user == null)
+                res.status(404).json({message: "User not found", data: user});
+            else
+                res.status(200).json({message: "User found", data: user});
+        });
     })
-    .put(function(req, res) {
-      User.findById(req.params.id, function(err, user) {
-          if(err)
-            res.status(500).json({message:"PUT failed", data: err});
-          else if(user == null)
-            res.status(404).json({message:"User not found", data: user})
-          else {
-            user.username = req.body.username;
-            user.name = req.body.name;
-            user.email = req.body.email;
-            user.bcrypt_pass = req.body.bcrypt_pass;
-            //user.favorited_ids = req.body.favorited_ids;
-            user.bio = req.body.bio;
-            //user.picture_id = req.body.picture_id;
-            user.save(function(err) {
-              if(err) {
-                if(err.code == 11000)
-                    res.status(500).json({message:"Duplicate e-mail", data: []});
-                else
-                  res.status(500).json({message:"Error", data: []});
-              }
-              else
-                res.status(200).json({message:"User updated", data:user});
-            });
-          }
+    .put(function (req, res) {
+        User.findById(req.params.id, function (err, user) {
+            if (err)
+                res.status(500).json({message: "PUT failed", data: err});
+            else if (user == null)
+                res.status(404).json({message: "User not found", data: user})
+            else {
+                user.username = req.body.username;
+                user.name = req.body.name;
+                user.email = req.body.email;
+                user.bcrypt_pass = req.body.bcrypt_pass;
+                //user.favorited_ids = req.body.favorited_ids;
+                user.bio = req.body.bio;
+                //user.picture_id = req.body.picture_id;
+                user.save(function (err) {
+                    if (err) {
+                        if (err.code == 11000)
+                            res.status(500).json({message: "Duplicate e-mail", data: []});
+                        else
+                            res.status(500).json({message: "Error", data: []});
+                    }
+                    else
+                        res.status(200).json({message: "User updated", data: user});
+                });
+            }
 
-      });
+        });
     })
-    .delete(function(req, res) {
+    .delete(function (req, res) {
 
-      User.findByIdAndRemove(req.params.id, function(err, user) {
-          if(err)
-            res.status(500).json({message:"DELETE failed", data: err});
-          else if(user == null) {
-            res.status(404).json({message:"User not found", data: []});
-          }
-          else
-            res.status(200).json({message:"User deleted", data: []});
+        User.findByIdAndRemove(req.params.id, function (err, user) {
+            if (err)
+                res.status(500).json({message: "DELETE failed", data: err});
+            else if (user == null) {
+                res.status(404).json({message: "User not found", data: []});
+            }
+            else
+                res.status(200).json({message: "User deleted", data: []});
         });
     });
 
 // Apartments
 var Apartment = require('./models/apartment.js');
+var Comment = require('./models/comment.js');
 router.route('/apartment')
     .get(function (req, res) {
         Apartment.find(getParam(req.query.where))
@@ -246,28 +247,54 @@ router.route('/apartment')
     });
 router.route('/apartment/:id')
     .get(function (req, res) {
-        Apartment.findById(req.params.id, function (error, apartment) {
-            if (error) {
-                res.status(500);
-                res.json({
-                    message: getErrorMessage(error),
-                    data: []
-                });
-            }
-            else if (apartment == null) {
-                res.status(404);
-                res.json({
-                    message: "Apartment not found",
-                    data: []
-                });
-            }
-            else {
-                res.json({
-                    message: "OK",
-                    data: apartment
-                });
-            }
-        });
+        Comment.find({
+            apartmentId: req.params.id
+        })
+            .exec(function (error, comments) {
+                if (error) {
+                    res.status(500);
+                    res.json({
+                        message: getErrorMessage(error),
+                        data: []
+                    });
+                }
+                else {
+                    var totalRating = 0;
+                    for (var i = 0; i < comments.length; i++) {
+                        totalRating += comments[i].rating;
+                    }
+
+                    if (totalRating > 0) {
+                        totalRating = Math.floor(totalRating / comments.length * 100) / 100;
+                    }
+
+                    Apartment.findById(req.params.id, function (error, apartment) {
+                        if (error) {
+                            res.status(500);
+                            res.json({
+                                message: getErrorMessage(error),
+                                data: []
+                            });
+                        }
+                        else if (apartment == null) {
+                            res.status(404);
+                            res.json({
+                                message: "Apartment not found",
+                                data: []
+                            });
+                        }
+                        else {
+                            var output = JSON.parse(JSON.stringify(apartment));
+                            output['rating'] = totalRating;
+
+                            res.json({
+                                message: "OK",
+                                data: output
+                            });
+                        }
+                    });
+                }
+            });
     })
     .put(function (req, res) {
         Apartment.findById(req.params.id, function (error, apartment) {
@@ -344,7 +371,6 @@ router.route('/apartment/:id')
     });
 
 // Comments
-var Comment = require('./models/comment.js');
 router.route('/comment')
     .get(function (req, res) {
         Comment.find(getParam(req.query.where))
