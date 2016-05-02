@@ -108,7 +108,7 @@ router.route('/users')
         var username = req.body.username;
         var name = req.body.name;
         var email = req.body.email;
-        var pass = req.body.bcrypt_pass;
+        var pass = req.body.password;
 
         if (typeof name === "undefined") {
             res.status(100).json({message: "Missing name", data: []});
@@ -127,7 +127,7 @@ router.route('/users')
             user.username = username;
             user.name = name;
             user.email = email;
-            user.bcrypt_pass = pass;
+            user.password = pass;
             user.picture_url = req.body.picture_url;
 
             user.save(function (err) {
@@ -170,7 +170,7 @@ router.route('/users/:id')
                 user.username = req.body.username;
                 user.name = req.body.name;
                 user.email = req.body.email;
-                user.bcrypt_pass = req.body.bcrypt_pass;
+                user.password = req.body.password;
                 //user.favorited_ids = req.body.favorited_ids;
                 user.bio = req.body.bio;
                 user.picture_url = req.body.picture_url;
