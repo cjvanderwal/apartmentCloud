@@ -2,7 +2,7 @@
 
   <div class="row double">
 
-    <h1 id="title">{{apartment.name}}  <button class="button" ng-click="saveApartment()">Save as Favorite<!-- <br><i class="fa fa-heart" style="font-size:35px;"> --></i></button></h1>
+    <h1 id="title">{{apartment.name}}  <button class="button" ng-click="saveApartment()">Save as Favorite</i></button></h1>
     <h3>{{apartment.address}}</h3>
 
     <div class="small-4 columns text-center">
@@ -11,13 +11,10 @@
     </div>
 
     <div class="small-4 columns">
-      <div style="color:white;background-color:red;height:150px;">description placeholder</div><br>
+      {{apartment.description}}
     </div>
 
 
-    <!-- <div class="small-4 columns">
-      <chartist class="ct-chart" chartist-data="chartist.barData" chartist-chart-type="Bar"></chartist>
-    </div> -->
     <div id="starRating" class="small-1 columns text-right">
       {{ratingsBreakdown[0]}}<br>
       {{ratingsBreakdown[1]}}<br>
@@ -47,11 +44,50 @@
         <strong>Company:</strong> {{apartment.company}}<br>
     </div>
     <div class="small-8 columns">
-      <div id="comment" ng-repeat="comment in commentList">
-        <h3>Comment title</h3>
-        <p>{{comment.comment}}</p>
-        <p id="footnote">Written by <a ng-href="#/user/{{comment.userId}}">{{comment.userId}}</a>, who gave {{apartment.name}} a rating of <strong id="rating">{{comment.rating}}</strong> stars.
-      </div>
+      <h2>Leave a comment</h2>
+      <form>
+        <input id="input" type="text" ng-model="comment_title" placeholder="title" required>
+        <textarea id="input" type="text" rows="5" ng-model="comment_text" placeholder="comment" required></textarea>
+        <fieldset class="rating">
+          <input type="radio" id="star5" name="rating" ng-model="comment_rating" ng-value="5" />
+          <label class = "full" for="star5" ></label>
+
+          <input type="radio" id="star4half" name="rating" ng-model="comment_rating" ng-value="4.5" />
+          <label class="half" for="star4half"></label>
+
+          <input type="radio" id="star4" name="rating" ng-model="comment_rating" ng-value="4" />
+          <label class = "full" for="star4"></label>
+
+          <input type="radio" id="star3half" name="rating" ng-model="comment_rating" ng-value="3.5" />
+          <label class="half" for="star3half"></label>
+
+          <input type="radio" id="star3" name="rating" ng-model="comment_rating" ng-value="3" />
+          <label class = "full" for="star3"></label>
+
+          <input type="radio" id="star2half" name="rating" ng-model="comment_rating" ng-value="2.5" />
+          <label class="half" for="star2half"></label>
+
+          <input type="radio" id="star2" name="rating" ng-model="comment_rating" ng-value="2" /
+          ><label class = "full" for="star2"></label>
+
+          <input type="radio" id="star1half" name="rating" ng-model="comment_rating" ng-value="1.5" />
+          <label class="half" for="star1half"></label>
+
+          <input type="radio" id="star1" name="rating" ng-model="comment_rating" ng-value="1" />
+          <label class = "full" for="star1"></label>
+
+          <input type="radio" id="starhalf" name="rating" ng-model="comment_rating" ng-value=".5" />
+          <label class="half" for="starhalf" ></label>
+        </fieldset>
+        <button class="button" ng-click="addComment()">Post</button> {{ratingStatus}}
+      </form>
+    </div>
+  </div>
+  <div class="row"
+    <div id="comment" ng-repeat="comment in commentList">
+      <h3>{{comment.title}}</h3>
+      <p>{{comment.comment}}</p>
+      <p id="footnote">Written by <a ng-href="#/user/{{comment.userId}}">{{comment.userId}}</a>, who gave {{apartment.name}} a rating of <strong id="rating">{{comment.rating}}</strong> stars.
     </div>
   </div>
 

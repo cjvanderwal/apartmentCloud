@@ -4,7 +4,7 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
   $scope.newUser = true;
   $scope.username = "";
   $scope.email = "";
-  $scope.bcrypt_pass = "";
+  $scope.password = "";
   $scope.name = "";
   $scope.registerStatus = "";
   $scope.loginStatus = "";
@@ -19,7 +19,7 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
 
   // user is signing up, send POST request to backend
   $scope.register = function() {
-    Users.addUser({name: $scope.name, username: $scope.username, bcrypt_pass: $scope.password, email: $scope.email}).then(function(response) {
+    Users.addUser({name: $scope.name, username: $scope.username, password: $scope.password, email: $scope.email}).then(function(response) {
       $scope.registerStatus = response.data.message;
     },
     function(error) {
@@ -37,6 +37,27 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
 apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$http', '$routeParams', 'Apartments', 'Comments', function($scope, $http, $routeParams, Apartments, Comments) {
   $scope.ratingsBreakdown = [0,0,0,0,0];
   $scope.labels = ['1 star', '2 stars', '3 stars', '4 stars', '5 stars'];
+
+  $scope.comment_title = "";
+  $scope.comment_text = "";
+  $scope.comment_rating = 0;
+  $scope.ratingStatus = "";
+
+  $scope.addComment = function() {
+    if ($scope.comment_title === "" || $scope.comment_text === "" || $scope.comment_rating === 0) {
+      if ($scope.comment_rating === 0) {
+        $scope.ratingStatus = "Please rate the apartment!"
+      }
+      return;
+    }
+    else {
+      Comments.add({apartmentId: $scope.apartment.apartmentId,
+                    userID: _____,
+                    rating: $scope.comment_rating,
+                    title: $scope.comment_title,
+                    comment: $scope.comment_text });
+    }
+  }
 
   // get the current apartment object from the backend
   Apartments.getDetails($routeParams.aptID).success(function(response) {
@@ -80,7 +101,7 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http'
 
   // updates the current users' password
   $scope.updatePassword = function() {
-    $scope.user.bcrypt_pass = $scope.newPassword;
+    $scope.user.password = $scope.newPassword;
     Users.modifyUser($scope.user).success(function(response) {
       $scope.passStatus = "password updated!";
     });
@@ -89,7 +110,7 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http'
   $scope.updatePicture = function() {
     $scope.user.picture_url = $scope.newPicture;
     Users.modifyUser($scope.user).success(function(response) {
-      $scope.picStatu = "picture updated!";
+      $scope.picStatus = "picture updated!";
     });
   };
 

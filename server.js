@@ -3,10 +3,14 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var router = express.Router();
+var cookieParser = require('cookie-parser');
+var session= require('express-session');
+var passport = require('passport');
+var morgan = require('morgan');
 
 //replace this with your Mongolab URL
 mongoose.connect('mongodb://admin:ax84GTFgZDK42JLT@ds013931.mlab.com:13931/final_project');
-
+require('./config/passport')(passport);
 // Create our Express application
 var app = express();
 
@@ -27,6 +31,14 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(session({ secret: 'FinalProject' }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./models/routes.js')(app, passport);
 
 function getParam(param) {
     return eval('(' + param + ')');
@@ -96,7 +108,7 @@ router.route('/users')
         var username = req.body.username;
         var name = req.body.name;
         var email = req.body.email;
-        var pass = req.body.bcrypt_pass;
+        var pass = req.body.password;
 
         if (typeof name === "undefined") {
             res.status(100).json({message: "Missing name", data: []});
@@ -115,7 +127,7 @@ router.route('/users')
             user.username = username;
             user.name = name;
             user.email = email;
-            user.bcrypt_pass = pass;
+            user.password = pass;
             user.picture_url = req.body.picture_url;
 
             user.save(function (err) {
@@ -158,10 +170,10 @@ router.route('/users/:id')
                 user.username = req.body.username;
                 user.name = req.body.name;
                 user.email = req.body.email;
-                user.bcrypt_pass = req.body.bcrypt_pass;
+                user.password = req.body.password;
                 //user.favorited_ids = req.body.favorited_ids;
                 user.bio = req.body.bio;
-                //user.picture_id = req.body.picture_id;
+                user.picture_url = req.body.picture_url;
                 user.save(function (err) {
                     if (err) {
                         if (err.code == 11000)
