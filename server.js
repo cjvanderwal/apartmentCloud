@@ -227,6 +227,7 @@ router.route('/apartment')
         apartment.noOfBathRoom = req.body.noOfBathRoom;
         apartment.startLease = req.body.startLease;
         apartment.endLease = req.body.endLease;
+        apartment.description = req.body.description;
         apartment.image = req.body.image;
 
         apartment.save(function (error) {
@@ -328,6 +329,7 @@ router.route('/apartment/:id')
             apartment.noOfBathRoom = req.body.noOfBathRoom;
             apartment.startLease = req.body.startLease;
             apartment.endLease = req.body.endLease;
+            apartment.description = req.body.description;
             apartment.image = req.body.image;
 
             apartment.save(function (error) {
@@ -401,6 +403,7 @@ router.route('/comment')
         comment.apartmentId = req.body.apartmentId;
         comment.userId = req.body.userId;
         comment.rating = req.body.rating;
+        comment.title = req.body.title;
         comment.comment = req.body.comment;
 
         comment.save(function (error) {
