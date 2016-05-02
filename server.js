@@ -402,6 +402,7 @@ router.route('/comment')
         var comment = new Comment();
         comment.apartmentId = req.body.apartmentId;
         comment.userId = req.body.userId;
+        comment.username = req.body.username;
         comment.rating = req.body.rating;
         comment.title = req.body.title;
         comment.comment = req.body.comment;
