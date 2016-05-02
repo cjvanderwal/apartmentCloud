@@ -3,10 +3,14 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var router = express.Router();
+var cookieParser = require('cookie-parser');
+var session= require('express-session');
+var passport = require('passport');
+var morgan = require('morgan');
 
 //replace this with your Mongolab URL
 mongoose.connect('mongodb://admin:ax84GTFgZDK42JLT@ds013931.mlab.com:13931/final_project');
-
+require('./config/passport')(passport);
 // Create our Express application
 var app = express();
 
@@ -27,6 +31,14 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(session({ secret: 'FinalProject' }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./models/routes.js')(app, passport);
 
 function getParam(param) {
     return eval('(' + param + ')');
