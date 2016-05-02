@@ -4,7 +4,7 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
   $scope.newUser = true;
   $scope.username = "";
   $scope.email = "";
-  $scope.bcrypt_pass = "";
+  $scope.password = "";
   $scope.name = "";
   $scope.registerStatus = "";
   $scope.loginStatus = "";
@@ -19,7 +19,7 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
 
   // user is signing up, send POST request to backend
   $scope.register = function() {
-    Users.addUser({name: $scope.name, username: $scope.username, bcrypt_pass: $scope.password, email: $scope.email}).then(function(response) {
+    Users.addUser({name: $scope.name, username: $scope.username, password: $scope.password, email: $scope.email}).then(function(response) {
       $scope.registerStatus = response.data.message;
     },
     function(error) {
@@ -101,7 +101,7 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http'
 
   // updates the current users' password
   $scope.updatePassword = function() {
-    $scope.user.bcrypt_pass = $scope.newPassword;
+    $scope.user.password = $scope.newPassword;
     Users.modifyUser($scope.user).success(function(response) {
       $scope.passStatus = "password updated!";
     });
