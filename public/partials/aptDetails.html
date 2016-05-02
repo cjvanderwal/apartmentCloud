@@ -2,7 +2,7 @@
 
   <div class="row double">
 
-    <h1 id="title">{{apartment.name}}  <button class="button" ng-click="saveApartment()">Save as Favorite<!-- <br><i class="fa fa-heart" style="font-size:35px;"> --></i></button></h1>
+    <h1 id="title">{{apartment.name}}  <button class="button" ng-click="saveApartment()">Save as Favorite</i></button></h1>
     <h3>{{apartment.address}}</h3>
 
     <div class="small-4 columns text-center">
@@ -11,13 +11,10 @@
     </div>
 
     <div class="small-4 columns">
-      <div style="color:white;background-color:red;height:150px;">description placeholder</div><br>
+      {{apartment.description}}
     </div>
 
 
-    <!-- <div class="small-4 columns">
-      <chartist class="ct-chart" chartist-data="chartist.barData" chartist-chart-type="Bar"></chartist>
-    </div> -->
     <div id="starRating" class="small-1 columns text-right">
       {{ratingsBreakdown[0]}}<br>
       {{ratingsBreakdown[1]}}<br>

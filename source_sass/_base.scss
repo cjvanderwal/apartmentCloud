@@ -3,8 +3,12 @@ html * {
   color: $my_white;
   font-family: $font-primary;
 }
+#status {
+  color: $my_green;
+}
 #title {
   font-family: $font-secondary;
+  color: $my_green;
 }
 #logo {
   font-family: $font-logo;
@@ -64,9 +68,6 @@ a {
 
 // login partial where users login and signup
 #loginsignup {
-  #title {
-    color: $my_green;
-  }
   #form {
     padding: 50px;
     border: 1px solid $my_black;
@@ -160,9 +161,9 @@ a {
 
 //sublease partial where users can create their own sublease
 #sublease {
-  #title {
-    color: $my_green;
-  }
+  // #title {
+  //   color: $my_green;
+  // }
   .required {
     color: red;
   }

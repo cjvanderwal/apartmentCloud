@@ -9,7 +9,7 @@
 
     <div class="small-7 columns">
       <h2 id="title">Favorite Apartments</h2>
-      <slick infinite=true dots=true slides-to-show=4 slides-to-scroll=2>
+      <slick infinite=true dots=true slides-to-show=3 slides-to-scroll=2>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
@@ -29,7 +29,7 @@
         <a class="float-right" ng-click="changePassword = !changePassword">X</a><br>
         <input id="input" ng-model="newPassword" type="text" placeholder="password">
         <button class="button" ng-click="updatePassword()">Change</button><br>
-        {{passStatus}}
+        <strong id="status">{{passStatus}}</strong>
       </div>
     </div>
     <div ng-show="changePicture">
@@ -37,7 +37,7 @@
         <a class="float-right" ng-click="changePicture = !changePicture">X</a><br>
         <input id="input" ng-model="newPicture" type="text" placeholder="picture URL">
         <button class="button" ng-click="updatePicture()">Change</button><br>
-        {{picStatus}}
+        <strong id="status">{{picStatus}}</strong>
       </div>
     </div>
 
