@@ -1,6 +1,6 @@
 <div id="sublease">
   <form name="addSublease" novalidate>
-    Name <span id="required">*</span>
+    Name <span class="required">*</span>
   	<div class="row">
   		<div class="form-group">
   	    <div class="small-6 columns">
@@ -9,14 +9,14 @@
   	    </div>
   		</div>
   	</div>
-    Address <span id="required">*</span>
+    Address <span class="required">*</span>
     <div class="row">
       <div class="small-6 columns">
         <input ng-model="address" name="address" type="text" class="form-control" required>
         <p ng-show="addSublease.address.$invalid" class="help-block">An address is required.</p>
       </div>
     </div>
-    Price <span id="required">*</span>
+    Price <span class="required">*</span>
     <div class="row">
   		<div class="form-group">
   	    <div class="small-6 columns">
@@ -25,7 +25,7 @@
   	    </div>
   		</div>
     </div>
-    No. of Bedrooms
+    No. of Bedrooms <span class="required">*</span>
     <div class="row">
       <div class="form-group">
   	    <div class="small-6 columns">
@@ -34,7 +34,7 @@
   	    </div>
   		</div>
     </div>
-    No. of Bathrooms
+    No. of Bathrooms <span class="required">*</span>
     <div class="row">
       <div class="form-group">
   	    <div class="small-6 columns">
@@ -43,7 +43,7 @@
   	    </div>
   		</div>
     </div>
-    Lease Date
+    Lease Date <span class="required">*</span>
     <div class="row">
       <div class="form-group">
         <div class="small-3 columns">
@@ -56,10 +56,19 @@
         </div>
       </div>
     </div>
+      Image
+      <div class="row">
+          <div class="form-group">
+              <div class="small-6 columns">
+                  <input ng-model="image" name="image" type="text" class="form-control" placeholder="Your image URL">
+              </div>
+          </div>
+      </div>
     <div class="row text-center">
   	  <div class="small-6 text-center columns">
-  	    <button id="submit" class="button info" ng-click="addSublease()">Create</button>
+  	    <button id="submit" class="button info" ng-click="createSublease()">Create</button>
   	  </div>
   	</div>
   </form>
+    {{registerStatus}}
 </div>

@@ -132,13 +132,17 @@ a {
     transform: scale(1.1);
     cursor: pointer;
   }
+
+  .errorMessage {
+    color: red;
+  }
 }
 //---------------------------------
 
 
 //sublease partial where users can create their own sublease
 #sublease {
-  #required {
+  .required {
     color: red;
   }
 }
