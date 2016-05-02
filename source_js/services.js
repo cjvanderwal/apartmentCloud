@@ -6,7 +6,10 @@ apartmentCloudServices.factory('Apartments', function($http) {
       return $http.get('http://localhost:4000/api/apartment/'+id);
     },
     addSublease: function(obj) {
-      return $http.post('http://localhost:4000/api/apartment/');
+      return $http.post('http://localhost:4000/api/apartment/', obj);
+    },
+    modifyApt: function(obj) {
+      return $http.put('http://localhost:4000/api/apartment/'+obj['_id'], obj);
     }
   }
 });
@@ -106,6 +109,23 @@ apartmentCloudServices.factory('Map', function() {
         $scope.currPoly = rectPoly;
         $scope.$apply();
       }
+    }
+  }
+});
+
+apartmentCloudServices.factory('Date', function() {
+  return {
+    formatDate : function(date) {
+      var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+      var string = date.substring(0, date.indexOf('T'));
+      var str = string.split("-");
+      var res = monthNames[parseInt(str[1]-1)];
+      return res + " " + str[2] + ", " + str[0];
     }
   }
 });

@@ -3,6 +3,9 @@ app.filter('unique', function() {
     return function(input) {
         var unique = {};
         var uniqueList = [];
+        if (input === undefined) {
+            return [];
+        }
         for(var i = 0; i < input.length; i++){
             if(typeof unique[input[i].company] == "undefined"){
                 unique[input[i].company] = "";

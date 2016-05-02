@@ -95,7 +95,7 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http'
 
 }]);
 
-apartmentCloudControllers.controller('SubleaseController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+apartmentCloudControllers.controller('SubleaseController', ['$scope', '$http', '$routeParams', 'Apartments', function($scope, $http, $routeParams, Apartments) {
   // $scope.name = "";
   // $scope.address = "";
   // $scope.price = "";
@@ -104,49 +104,77 @@ apartmentCloudControllers.controller('SubleaseController', ['$scope', '$http', '
   // $scope.startDate = Date.now();
   // $scope.endDate = Date.now();
 
-  // $scope.addSublease = function() {
-  //   Apartments.createSublease(obj...)
-  // };
+   $scope.createSublease = function() {
+     Apartments.addSublease({name: $scope.name, address: $scope.address, price: $scope.price, company: "Sublease", noOfBedroom : $scope.bedrooms, noOfBathRoom : $scope.bathrooms, startLease : $scope.startDate, endLease: $scope.endDate, image: $scope.image}).then(function(response) {
+           $scope.registerStatus = response.data.message;
+         },
+         function(error) {
+           $scope.registerStatus = error.data.message;
+         });
+   };
 }]);
 
-apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 'Map', function($scope, $http, Map) {
-  $http.get("http://localhost:4000/api/apartment/") // ./data/test.json http://localhost:4000/api/apartment/
+apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 'Map', 'Date', 'Apartments', function($scope, $http, Map, Date, Apartments) {
+  $http.get("http://localhost:4000/api/apartment/")
       .then(function(apartments) {
         $scope.apartments = apartments.data;
         $scope.numBedrooms = "";
         $scope.numBathrooms = "";
+        $scope.geocoder = new google.maps.Geocoder();
+        $scope.errorMessage = "";
       })
       .catch(function(err) {
         console.log("failure");
       });
 
+  $scope.getNumMessage = function(numApts) {
+    if (numApts == 0) {
+      return "No apartments matched your search.";
+    }
+    return numApts + " apartment(s) matched your search."
+  }
   $scope.filterRange = function(string) {
     var nowhitespace = string.replace(/ /g,'');
     return nowhitespace.split("-");
   };
   $scope.filterBedrooms = function(apt) {
+    $scope.errorMessage = "";
     if ($scope.numBedrooms === undefined || $scope.numBedrooms.length == 0) {
       return true;
     }
     var bedStrings = $scope.filterRange($scope.numBedrooms);
+    if (bedStrings.length == 1) {
+      return apt.noOfBedroom == parseInt(bedStrings[0]);
+    }
     if (bedStrings.length != 2) {
-      return true; // TODO error message
+      $scope.errorMessage = "Please enter a valid bedroom range."
+      return false;
     }
     return apt.noOfBedroom >= parseInt(bedStrings[0]) && apt.noOfBedroom <= parseInt(bedStrings[1]);
   };
   $scope.filterBathrooms = function(apt) {
+    $scope.errorMessage = "";
     if ($scope.numBathrooms === undefined || $scope.numBathrooms.length == 0) {
       return true;
     }
     var bathStrings = $scope.filterRange($scope.numBathrooms);
+    if (bathStrings.length == 1) {
+      return apt.noOfBathRoom == parseInt(bathStrings[0]);
+    }
     if (bathStrings.length != 2) {
-      return true; // TODO error message
+      $scope.errorMessage = "Please enter a valid bathroom range."
+      return false;
     }
     return apt.noOfBathRoom >= parseInt(bathStrings[0]) && apt.noOfBathRoom <= parseInt(bathStrings[1]);
   };
   $scope.filterPrice = function(apt) {
-    if ($scope.priceLower === undefined || $scope.priceUpper === undefined) {
-      return true; // TODO error message
+    $scope.errorMessage = "";
+    if (($scope.priceLower === undefined || $scope.priceLower.length == 0) && ($scope.priceUpper === undefined || $scope.priceUpper.length == 0)) {
+      return true;
+    }
+    if (($scope.priceLower === undefined || $scope.priceLower.length == 0) || ($scope.priceUpper === undefined || $scope.priceUpper.length == 0)) {
+      $scope.errorMessage = "Please enter a valid price range."
+      return false;
     }
     return apt.price >= $scope.priceLower && apt.price <= $scope.priceUpper;
   };
@@ -154,8 +182,28 @@ apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 
     if ($scope.currPoly === undefined) {
       return true;
     }
+    if (apt.lat === undefined || apt.lon === undefined) {
+      $scope.geocoder.geocode( { 'address': apt.address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          apt.lat = results[0].geometry.location.lat();
+          apt.lon = results[0].geometry.location.lng();
+          Apartments.modifyApt(apt).then(function(response) {
+                console.log("Apartment lat/lng added");
+                $scope.$apply();
+              },
+              function(error) {
+                console.log(error.data.message);
+              });
+        } else {
+          console.log("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
     return google.maps.geometry.poly.containsLocation(new google.maps.LatLng(apt.lat, apt.lon), $scope.currPoly);
-  }
+  };
+  $scope.readableDate = function(date) {
+    return Date.formatDate(date);
+  };
   $scope.init = function() {
     Map.initialize($scope);
     $(document).foundation();

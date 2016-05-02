@@ -20,23 +20,37 @@
                     </select>
                 </div>
             </form>
+            <br>
+            Select an area on the map to the right to narrow down your search
+            <br>
+            <br>
+            <p><i>All unselected fields will not be considered.</i></p>
         </div>
         <div class="small-4 columns">
             <div id="googleMap" style="width:500px;height:380px;"></div>
         </div>
     </div>
-    <div class="center upper_padding"><button class="button go_button" ng-click="$scope.show = true">Go</button></div>
-    <div ng-show="$scope.show" ng-init="$scope.show = false">
-        <div class="columns small-12" ng-repeat="apt in apartments.data | filter: {company : selectedCompany} | filter:filterBedrooms | filter:filterBathrooms | filter:filterPrice | filter:filterMap">
+    <div class="center upper_padding"><button class="button go_button" ng-click="show = true">Go</button></div>
+    <div ng-show="show">
+        <br>
+        <h4>{{getNumMessage(filtered.length)}}</h4>
+        <br>
+    </div>
+    <div ng-show="show">
+        <h4 class="errorMessage">{{errorMessage}}</h4>
+    </div>
+    <div ng-show="show" ng-init="show = false">
+        <div class="columns small-12" ng-repeat="apt in apartments.data | filter: {company : selectedCompany} | filter:filterBedrooms | filter:filterBathrooms | filter:filterPrice | filter:filterMap as filtered">
             <div row>
                 <div class="small-4 columns">
-                    <a href="#/aptID:{{apt._id}}"><img class="grow" src="{{apt.image}}"></a>
+                    <a href="#/apartment/{{apt._id}}"><img class="grow" src="{{apt.image}}"></a>
                 </div>
                 <div class="small-4 columns">
                     Name: {{apt.name}}<br>
                     # Bedrooms: {{apt.noOfBedroom}}<br>
                     # Bathrooms: {{apt.noOfBathRoom}}<br>
-                    Price/month: {{apt.price}}
+                    Price per month: {{apt.price}}<br>
+                    Lease period: {{readableDate(apt.startLease)}} - {{readableDate(apt.endLease)}}
                 </div>
                 <div class="small-4 columns">
                     Company: {{apt.company}}<br>
