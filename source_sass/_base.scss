@@ -76,6 +76,12 @@ a {
 
 // frontpage partial where users browse and filter apartments
 #frontpage {
+  #attrib {
+    text-decoration: underline;
+  }
+  #company {
+    color: $my_green;
+  }
   .inline_item {
     display: inline;
   }

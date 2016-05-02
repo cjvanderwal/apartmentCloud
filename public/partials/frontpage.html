@@ -10,7 +10,7 @@
                     Price per month
                     <div class="inline_form">
                         <div class="left_element">
-                            $<input id="input" ng-model="priceLower" type="text" placeholder="300" class="fixed_width inline_item">  -  $<input id="input" ng-model="priceUpper" type="text" placeholder="600" class="fixed_width inline_item">
+                            <input id="input" ng-model="priceLower" type="text" placeholder="$300" class="fixed_width inline_item">  -  <input id="input" ng-model="priceUpper" type="text" placeholder="$600" class="fixed_width inline_item">
                         </div>
                     </div>
                 </div>
@@ -46,15 +46,17 @@
                     <a href="#/apartment/{{apt._id}}"><img class="grow" src="{{apt.image}}"></a>
                 </div>
                 <div class="small-4 columns">
-                    Name: {{apt.name}}<br>
-                    # Bedrooms: {{apt.noOfBedroom}}<br>
-                    # Bathrooms: {{apt.noOfBathRoom}}<br>
-                    Price per month: {{apt.price}}<br>
-                    Lease period: {{readableDate(apt.startLease)}} - {{readableDate(apt.endLease)}}
+                    <strong id="attrib">Name:</strong> {{apt.name}}<br>
+                    <strong id="attrib"># Bedrooms:</strong> {{apt.noOfBedroom}}<br>
+                    <strong id="attrib"># Bathrooms:</strong> {{apt.noOfBathRoom}}<br>
+                    <strong id="attrib">Price per month:</strong> {{apt.price}}<br>
+                    <strong id="attrib">Lease period:</strong> {{readableDate(apt.startLease)}} - {{readableDate(apt.endLease)}}
                 </div>
                 <div class="small-4 columns">
-                    Company: {{apt.company}}<br>
-                    Rating: {{apt.rating}} / 5
+                  <div class="text-center">
+                    <h3 id="company">{{apt.company}}</h3>
+                    {{apt.rating}}/5
+                  </div>
                 </div>
             </div>
         </div>
