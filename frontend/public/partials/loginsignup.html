@@ -1,0 +1,43 @@
+<div id="loginsignup">
+  <div class="row">
+
+    <div ng-show="!newUser">
+      <div class="small-6 small-centered columns">
+        <h1 id="title" class="text-center">Sign in</h1>
+        <div id="form">
+           Username <span id="required">*</span>
+      		 <input id="input" ng-model="username" type="text" required>
+           Password <span id="required">*</span>
+           <input id="input" ng-model="password" type="password" required>
+           <div class="text-center">
+             <button class="button" ng-click="login()">Login</button><br>
+             <a ng-click="signUp()">Don't have an account? Sign up instead</a><br>
+           </div>
+         </div>
+      {{loginStatus}}
+      </div>
+    </div>
+
+    <div ng-show="newUser">
+      <div class="small-6 small-centered columns">
+        <h1 id="title" class="text-center">Sign up</h1>
+        <div id="form">
+          Username/Name <span id="required">*</span>
+          <input id="input" ng-model="username" type="text" placeholder="Your nickname" required>
+          <input id="input" ng-model="name" type="text" placeholder="Your real name" required>
+          Password <span id="required">*</span>
+          <input id="input" ng-model="password" type="password" required>
+          Email <span id="required">*</span>
+          <input id="input" ng-model="email" type="text" required>
+          <div class="text-center">
+            <button class="button" ng-click="register()">Register</button><br>
+            <a ng-click="signIn()">Have an account? Sign in instead</a><br>
+            <strong id="status">{{registerStatus}}</strong>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

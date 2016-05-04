@@ -1,0 +1,29 @@
+<div id="sublease">
+  <div class="row text-center">
+    <h2 id="title">Create a sublease</h2>
+  </div>
+  <div class="row">
+	  <div class="small-6 small-centered columns">
+      <div id="form">
+        Name <span class="required">*</span>
+			  <input id="input" ng-model="name" name="name" type="text" class="form-control" required>
+        Address <span class="required">*</span>
+        <input id="input" ng-model="address" name="address" type="text" class="form-control" required>
+        Price <span class="required">*</span>
+	      <input id="input" ng-model="price" name="price" type="text" class="form-control" required>
+        No. of Bedrooms <span class="required">*</span>
+	      <input id="input" ng-model="bedrooms" name="bedrooms" type="text" class="form-control" required>
+        No. of Bathrooms <span class="required">*</span>
+	      <input id="input" ng-model="bathrooms" name="bathrooms" type="text" class="form-control" required>
+        Lease Date <span class="required">*</span><br>
+        <div class="small-6 columns"><input id="input" ng-model="startDate" name="startDate" type="text" class="form-control" required></div>
+        <div class="small-6 columns"><input id="input" ng-model="endDate" name="endDate" type="text" class="form-control" required></div>
+        Image URL
+        <input id="input" ng-model="image" name="image" type="text" class="form-control">
+
+        <div class="text-center"><button id="submit" class="button info" ng-click="createSublease()">Create</button></div>
+      </div>
+    </div>
+  </div>
+  {{registerStatus}}
+</div>
