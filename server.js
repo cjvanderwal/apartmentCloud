@@ -38,7 +38,7 @@ app.use(session({ secret: 'FinalProject' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./models/routes.js')(app, passport);
+require('./app/routes.js')(app, passport);
 
 function getParam(param) {
     return eval('(' + param + ')');
@@ -74,7 +74,7 @@ homeRoute.get(function (req, res) {
 app.use('/api', router);
 
 //Add more routes here
-var User = require('./models/user.js');
+var User = require('./app/models/user.js');
 //200 (success), 201 (created), 404 (not found), 500 (server error).
 router.route('/users')
     .get(function (req, res) {
@@ -202,8 +202,8 @@ router.route('/users/:id')
     });
 
 // Apartments
-var Apartment = require('./models/apartment.js');
-var Comment = require('./models/comment.js');
+var Apartment = require('./app/models/apartment.js');
+var Comment = require('./app/models/comment.js');
 router.route('/apartment')
     .get(function (req, res) {
         Apartment.find(getParam(req.query.where))

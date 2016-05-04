@@ -1,5 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user');
+var User = require('../app/models/user');
 
 module.exports = function(passport) {
 	passport.serializeUser(function(user, done) {
@@ -27,7 +27,7 @@ module.exports = function(passport) {
 				return done(null, false);
 			} else {
 				var newUser = new User();
-				
+
 				newUser.local.username = username;
 				newUser.local.password = newUser.generateHash(password);
 				newUser.local.email = email;
@@ -39,7 +39,7 @@ module.exports = function(passport) {
 					return done(null, newUser);
 				});
 			}
-			
+
 		});
 	}));
 
