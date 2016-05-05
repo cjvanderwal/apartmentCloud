@@ -32,14 +32,20 @@
     <div class="center upper_padding"><button class="button go_button" ng-click="show = true">Go</button></div>
     <div ng-show="show">
         <br>
-        <h4>{{getNumMessage(filtered.length)}}</h4>
+        <h4 class="inline_item">{{getNumMessage(filtered.length)}}</h4>
+        <div class="inline_item filter_bar">
+            <h4 class="inline_item">Sort by</h4>
+            <input type="radio" name="orderType" checked="checked" ng-click="apartments.listorder='company'"><h4 class="inline_item">Company</h4></input>
+            <input type="radio" name="orderType" ng-click="apartments.listorder=sortByPrice"><h4 class="inline_item">Price/Bedroom</h4></input>
+        </div>
         <br>
     </div>
     <div ng-show="show">
         <h4 class="errorMessage">{{errorMessage}}</h4>
     </div>
     <div ng-show="show" ng-init="show = false">
-        <div class="columns small-12" ng-repeat="apt in apartments.data | filter: {company : selectedCompany} | filter:filterBedrooms | filter:filterBathrooms | filter:filterPrice | filter:filterMap as filtered">
+
+        <div class="columns small-12" ng-repeat="apt in apartments.data | orderBy:apartments.listorder | filter: {company : selectedCompany} | filter:filterBedrooms | filter:filterBathrooms | filter:filterPrice | filter:filterMap as filtered" ng-init="apartments.listorder='company'">
             <div row>
                 <div class="small-4 columns">
                     <a href="#/apartment/{{apt._id}}"><img class="grow" src="{{apt.image}}"></a>

@@ -237,6 +237,9 @@ apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 
   $scope.readableDate = function(date) {
     return Date.formatDate(date);
   };
+  $scope.sortByPrice = function(apt) {
+    return apt.price / apt.noOfBedroom;
+  }
   $scope.init = function() {
     Map.initialize($scope);
     $(document).foundation();

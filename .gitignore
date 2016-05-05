@@ -6,3 +6,8 @@ npm-debug.log
 public/css/
 public/js/
 bower_components/
+node_modules/
+frontend\public\js
+frontend\public\css
+frontend/public/js
+frontend/public/css
