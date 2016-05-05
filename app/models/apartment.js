@@ -7,6 +7,7 @@ var ApartmentSchema = new mongoose.Schema({
     lat: {type: Number},
     lon: {type: Number},
     company: {type: String, required: true},
+    contact: {type: String, required: true},
     price: {type: Number, required: true},
     noOfBedroom: {type: Number, required: true},
     noOfBathRoom: {type: Number, required: true},
