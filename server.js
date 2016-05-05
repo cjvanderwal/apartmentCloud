@@ -234,6 +234,7 @@ router.route('/apartment')
         apartment.lat = req.body.lat;
         apartment.lon = req.body.lon;
         apartment.company = req.body.company;
+        apartment.contact = req.body.contact;
         apartment.price = req.body.price;
         apartment.noOfBedroom = req.body.noOfBedroom;
         apartment.noOfBathRoom = req.body.noOfBathRoom;
@@ -336,6 +337,7 @@ router.route('/apartment/:id')
             apartment.lat = req.body.lat;
             apartment.lon = req.body.lon;
             apartment.company = req.body.company;
+            apartment.contact = req.body.contact;
             apartment.price = req.body.price;
             apartment.noOfBedroom = req.body.noOfBedroom;
             apartment.noOfBathRoom = req.body.noOfBathRoom;
