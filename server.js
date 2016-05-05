@@ -9,7 +9,8 @@ var passport = require('passport');
 var morgan = require('morgan');
 
 //replace this with your Mongolab URL
-mongoose.connect('mongodb://admin:ax84GTFgZDK42JLT@ds013931.mlab.com:13931/final_project');
+//mongoose.connect('mongodb://admin:ax84GTFgZDK42JLT@ds013931.mlab.com:13931/final_project');
+mongoose.connect('mongodb://localhost/passport-demo');
 require('./config/passport')(passport);
 // Create our Express application
 var app = express();

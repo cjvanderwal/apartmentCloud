@@ -5,15 +5,21 @@
       <div class="small-6 small-centered columns">
         <h1 id="title" class="text-center">Sign in</h1>
         <div id="form">
-           Username <span id="required">*</span>
-      		 <input id="input" ng-model="username" type="text" required>
-           Password <span id="required">*</span>
-           <input id="input" ng-model="password" type="password" required>
-           <div class="text-center">
-             <button class="button" ng-click="login()">Login</button><br>
-             <a ng-click="signUp()">Don't have an account? Sign up instead</a><br>
-           </div>
-         </div>
+          <form action="http://localhost:4000/login" method="post">
+            <div class="form-group">
+               Username <span id="required">*</span>
+        		   <input id="input" type="text" class="form-control" name="username" required>
+            </div>
+            <div class="form-group">
+               Password <span id="required">*</span>
+               <input id="input" type="password" class="form-control" name="password" required>
+            </div>
+            <div class="text-center">
+              <button class="button" type="submit">Login</button><br>
+              <a ng-click="signUp()">Don't have an account? Sign up instead</a><br>
+            </div>
+          </form>
+        </div>
       {{loginStatus}}
       </div>
     </div>
@@ -22,18 +28,31 @@
       <div class="small-6 small-centered columns">
         <h1 id="title" class="text-center">Sign up</h1>
         <div id="form">
-          Username/Name <span id="required">*</span>
-          <input id="input" ng-model="username" type="text" placeholder="Your nickname" required>
-          <input id="input" ng-model="name" type="text" placeholder="Your real name" required>
-          Password <span id="required">*</span>
-          <input id="input" ng-model="password" type="password" required>
-          Email <span id="required">*</span>
-          <input id="input" ng-model="email" type="text" required>
-          <div class="text-center">
-            <button class="button" ng-click="register()">Register</button><br>
-            <a ng-click="signIn()">Have an account? Sign in instead</a><br>
-            <strong id="status">{{registerStatus}}</strong>
-          </div>
+          <form action="http://localhost:4000/signup" method="post">
+            <div class="form-group">
+                Username <span id="required">*</span>
+                <input id="input" type="text" placeholder="Your nickname" class="form-control" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                Name <span id="required">*</span>
+                <input id="input" type="text" placeholder="Your name" class="form-control" name="name" required>
+            </div>
+            <div class="form-group">
+                Email <span id="required">*</span>
+                <input id="input" type="text" placeholder="Your email" class="form-control" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                Password <span id="required">*</span>
+                <input id="input" type="password" placeholder="Your password" class="form-control" name="password" required>
+            </div>
+            <div class="text-center">
+                 <button class="button" type="submit">Register</button><br>
+                 <a ng-click="signIn()">Have an account? Sign in instead</a><br>
+                 <strong id="status">{{registerStatus}}</strong>
+            </div>
+          </form>
         </div>
 
       </div>
