@@ -1,10 +1,10 @@
 module.exports = function(app, passport) {
 
 	app.post('/signup', passport.authenticate('local-signup'), function(req, res) {
-		res.redirect('http://localhost:3000/#/userDetails.html');
+		res.redirect('http://localhost:3000/#/user/'+res.req.user._id);
 	});
 	app.post('/login', passport.authenticate('local-login'), function(req, res) {
-		res.redirect('http://localhost:3000/#/userDetails.html');
+		res.redirect('http://localhost:3000/#/user/'+res.req.user._id);
 	});
 	app.get('/profile', isLoggedIn, function(req, res) {
 		res.json({
