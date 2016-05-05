@@ -35,6 +35,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(session({ secret: 'FinalProject' }));
+app.use(express.static(__dirname + '/frontend/public'));
 
 app.use(passport.initialize());
 app.use(passport.session());

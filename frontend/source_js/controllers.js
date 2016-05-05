@@ -86,7 +86,7 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
 
 }]);
 
-apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http', '$routeParams', 'Users', function($scope, $http, $routeParams, Users) {
+apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootScope', '$http', '$routeParams', 'Users', function($scope, $rootScope, $http, $routeParams, Users) {
   $scope.changePassword = false;
   $scope.changePicture = false;
   $scope.newPassword = "";
@@ -94,9 +94,21 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$http'
   $scope.passStatus = "";
   $scope.picStatus = "";
 
-  // get the curremt user object from the backend
-  Users.getDetails($routeParams.userID).success(function(response) {
-    $scope.user = response.data;
+  // // get the curremt user object from the backend
+  // Users.getDetails($routeParams.userID).success(function(response) {
+  //   $scope.user = response.data;
+  // });
+
+  $scope.profile = false;
+  $http.get('/profile').success(function(data) {
+    if(!data.error) {
+			$scope.profile = true;
+			$rootScope.user = data.user;
+		}
+    else {
+      console.log(data.error);
+      alert(data.error);
+    }
   });
 
   // updates the current users' password
