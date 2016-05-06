@@ -38,7 +38,11 @@
         <strong id="status">{{picStatus}}</strong>
       </div>
     </div>
-    <h4>Subleases</h4>
+  </div>
+  <br><br>
+  <div class="row">
+    <h3 id="title">Subleases</h3>
+    {{subleaseStatus}}
     <div class="columns small-12" ng-repeat="subl in subleases" id="userSubleases">
       <div class="small-3 columns">
         <a href="#/apartment/{{subl._id}}"><img class="grow" ng-src="{{subl.image}}"></a>
@@ -47,9 +51,9 @@
         {{subl.description}}
       </div>
       <div class="small-2 columns">
-        <button class="button" ng-click="deleteSublease(subl._id)" id="{{subl._id}}_delete_button">Delete</button>
+        <button class="alert button" ng-click="deleteSublease(subl._id)" id="{{subl._id}}_delete_button">Delete</button>
       </div>
     </div>
-
   </div>
+
 </div>

@@ -42,6 +42,17 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
   $scope.comment_rating = 0;
   $scope.ratingStatus = "";
 
+  $http.get('/profile').success(function(data) {
+    if(!data.error) {
+      $rootScope.profile = data.user;
+
+      if ($rootScope.profile._id === $scope.user._id) {
+        $scope.loggedIn = true;
+      }
+    }
+  });
+
+
   $scope.profile = $rootScope.profile;
 
   $scope.addComment = function() {
@@ -110,6 +121,7 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
   $scope.newPicture = "";
   $scope.passStatus = "";
   $scope.picStatus = "";
+  $scope.subleaseStatus = "";
 
   // get the curremt user object from the backend
   Users.getDetails($routeParams.userID).success(function(response) {
@@ -137,12 +149,17 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
             });
         }
 
+        if ($scope.user.local.subleases.length === 0)
+          $scope.subleaseStatus = "No current subleases."
+        else
+          $scope.subleaseStatus = "";
         $scope.subleases = [];
         for (var i = 0; i < $scope.user.local.subleases.length; i++) {
           Apartments.getDetails($scope.user.local.subleases[i]).success(function(response) {
             $scope.subleases.push(response.data);
           });
         }
+
   		}
     });
 
@@ -154,6 +171,19 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
           document.getElementById(subl_id + "_delete_button").innerHTML = 'Deleted';
         });
       });
+
+      if ($scope.user.local.subleases.length === 0)
+        $scope.subleaseStatus = "No current subleases."
+      else
+        $scope.subleaseStatus = "";
+      $scope.subleases = [];
+      for (var i = 0; i < $scope.user.local.subleases.length; i++) {
+        Apartments.getDetails($scope.user.local.subleases[i]).success(function(response) {
+          $scope.subleases.push(response.data);
+        });
+      }
+      if ($scope.subleases.length === 0)
+        $scope.subleaseStatus = "No current subleases."
     }
   });
 
@@ -189,6 +219,16 @@ apartmentCloudControllers.controller('SubleaseController', ['$scope', '$rootScop
   // $scope.startDate = Date.now();
   // $scope.endDate = Date.now();
 
+  $http.get('/profile').success(function(data) {
+    if(!data.error) {
+      $rootScope.profile = data.user;
+
+      if ($rootScope.profile._id === $scope.user._id) {
+        $scope.loggedIn = true;
+      }
+    }
+  });
+
    $scope.createSublease = function() {
      if ($rootScope.profile === undefined) {
        $scope.registerStatus = "failure";
@@ -210,6 +250,17 @@ apartmentCloudControllers.controller('SubleaseController', ['$scope', '$rootScop
 }]);
 
 apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 'Map', 'Date', 'Apartments', function($scope, $http, Map, Date, Apartments) {
+
+  $http.get('/profile').success(function(data) {
+    if(!data.error) {
+      $rootScope.profile = data.user;
+
+      if ($rootScope.profile._id === $scope.user._id) {
+        $scope.loggedIn = true;
+      }
+    }
+  });
+
   $http.get("http://localhost:4000/api/apartment/")
       .then(function(apartments) {
         $scope.apartments = apartments.data;
