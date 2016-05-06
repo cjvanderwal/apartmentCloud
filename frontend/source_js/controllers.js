@@ -133,6 +133,10 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
   // get the curremt user object from the backend
   Users.getDetails($routeParams.userID).success(function(response) {
     $scope.user = response.data;
+    if ($scope.user.local.subleases.length === 0)
+      $scope.subleaseStatus = "No current subleases."
+    else
+      $scope.subleaseStatus = "";
 
     $scope.favorite_apts = [];
     for (var i = 0; i < $scope.user.local.favorited_ids.length; i++){
@@ -156,10 +160,6 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
             });
         }
 
-        if ($scope.user.local.subleases.length === 0)
-          $scope.subleaseStatus = "No current subleases."
-        else
-          $scope.subleaseStatus = "";
         $scope.subleases = [];
         for (var i = 0; i < $scope.user.local.subleases.length; i++) {
           Apartments.getDetails($scope.user.local.subleases[i]).success(function(response) {
