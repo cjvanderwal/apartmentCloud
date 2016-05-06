@@ -92,6 +92,7 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
       Comments.getByApt($routeParams.aptID).success(function(response) {
         $scope.commentList = response.data;
 
+        $scope.ratingsBreakdown = [0,0,0,0,0];
         for (var i = 0; i < $scope.commentList.length; i++) {
           var curr_rating = $scope.commentList[i].rating;
           if (curr_rating > 0 && curr_rating <= 5) {
