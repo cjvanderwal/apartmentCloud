@@ -37,13 +37,13 @@
 
   <div class="row">
     <div class="small-4 columns">
-      <h1 id="title">Information:</h1>
+      <h3 id="title">Information:</h3>
         <strong>Bedrooms:</strong> {{apartment.noOfBedroom}}<br>
         <strong>Bathrooms:</strong> {{apartment.noOfBathRoom}}<br>
         <strong>Lease Date:</strong> {{startDate}} <strong>to</strong> {{endDate}}<br>
         <strong>Company:</strong> {{apartment.company}}<br>
     </div>
-    <div class="small-8 columns" ng-if="profile">
+    <div class="small-8 columns" ng-show="profile">
       <h2>Leave a comment</h2>
       <form>
         <input id="input" type="text" ng-model="comment_title" placeholder="title" required>

@@ -45,6 +45,10 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
   $scope.profile = $rootScope.profile;
 
   $scope.addComment = function() {
+    alert($scope.comment_title);
+    alert($scope.comment_text);
+    alert($scope.comment_rating);
+
     if ($scope.comment_title === "" || $scope.comment_text === "" || $scope.comment_rating === 0) {
       if ($scope.comment_rating === 0) {
         $scope.ratingStatus = "Please rate the apartment!"
@@ -52,14 +56,14 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
       return;
     }
     else {
-      Comments.add({apartmentId: $scope.apartment.apartmentId,
+      Comments.add({apartmentId: $scope.apartment._id,
                     username: $scope.profile.local.username,
-                    userID: $scope.profile.local._id,
+                    userId: $scope.profile._id,
                     rating: $scope.comment_rating,
                     title: $scope.comment_title,
                     comment: $scope.comment_text });
     }
-  }
+  };
 
   // get the current apartment object from the backend
   Apartments.getDetails($routeParams.aptID).success(function(response) {
