@@ -1,7 +1,15 @@
 var apartmentCloudControllers = angular.module('apartmentCloudControllers', []);
 
 apartmentCloudControllers.controller('FrontPageController', ['$scope', '$rootScope', function($scope, $rootScope) {
-  $scope.profile = $rootScope.profile;
+  $http.get('/profile').success(function(data) {
+    if(!data.error) {
+      $scope.profile = data.user;
+
+      if ($rootScope.profile._id === $scope.user._id) {
+        $scope.loggedIn = true;
+      }
+    }
+  });
 }]);
 
 apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http', '$location', 'Users', function($scope, $http, $location, Users) {
@@ -249,7 +257,7 @@ apartmentCloudControllers.controller('SubleaseController', ['$scope', '$rootScop
    };
 }]);
 
-apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 'Map', 'Date', 'Apartments', function($scope, $http, Map, Date, Apartments) {
+apartmentCloudControllers.controller('FrontPageController', ['$scope', '$rootScope', '$http', 'Map', 'Date', 'Apartments', function($scope, $rootScope, $http, Map, Date, Apartments) {
 
   $http.get('/profile').success(function(data) {
     if(!data.error) {
