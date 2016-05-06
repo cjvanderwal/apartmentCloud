@@ -1,1 +1,0 @@
-app.filter("unique",function(){return function(input){var unique={},uniqueList=[];if(void 0===input)return[];for(var i=0;i<input.length;i++)"undefined"==typeof unique[input[i].company]&&(unique[input[i].company]="",uniqueList.push(input[i].company));return uniqueList}});
