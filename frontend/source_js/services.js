@@ -6,10 +6,10 @@ apartmentCloudServices.factory('Apartments', function($http) {
       return $http.get('http://104.131.161.55:4000/api/apartment/'+id);
     },
     addSublease: function(obj) {
-      return $http.post('http://104.131.161.55:4000//api/apartment/', obj);
+      return $http.post('http://104.131.161.55:4000/api/apartment/', obj);
     },
     modifyApt: function(obj) {
-      return $http.put('http://104.131.161.55:4000//api/apartment/'+obj['_id'], obj);
+      return $http.put('http://104.131.161.55:4000/api/apartment/'+obj['_id'], obj);
     },
     deleteApt: function(id) {
       return $http.delete('http://104.131.161.55:4000/api/apartment/'+id);
