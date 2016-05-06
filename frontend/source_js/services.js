@@ -3,16 +3,16 @@ var apartmentCloudServices = angular.module('apartmentCloudServices', []);
 apartmentCloudServices.factory('Apartments', function($http) {
   return {
     getDetails: function(id) {
-      return $http.get('http://localhost:4000/api/apartment/'+id);
+      return $http.get('http://104.131.161.55:4000/api/apartment/'+id);
     },
     addSublease: function(obj) {
-      return $http.post('http://localhost:4000/api/apartment/', obj);
+      return $http.post('http://104.131.161.55:4000//api/apartment/', obj);
     },
     modifyApt: function(obj) {
-      return $http.put('http://localhost:4000/api/apartment/'+obj['_id'], obj);
+      return $http.put('http://104.131.161.55:4000//api/apartment/'+obj['_id'], obj);
     },
     deleteApt: function(id) {
-      return $http.delete('http://localhost:4000/api/apartment/'+id);
+      return $http.delete('http://104.131.161.55:4000/api/apartment/'+id);
     }
   }
 });
@@ -20,10 +20,10 @@ apartmentCloudServices.factory('Apartments', function($http) {
 apartmentCloudServices.factory('Comments', function($http) {
   return {
     getByApt: function(id) {
-      return $http.get('http://localhost:4000/api/comment?where={"apartmentId": '+'"'+id+'"'+'}');
+      return $http.get('http://104.131.161.55:4000/api/comment?where={"apartmentId": '+'"'+id+'"'+'}');
     },
     add: function(obj) {
-      return $http.post('http://localhost:4000/api/comment/', obj)
+      return $http.post('http://104.131.161.55:4000/api/comment/', obj)
     }
   }
 });
@@ -31,13 +31,13 @@ apartmentCloudServices.factory('Comments', function($http) {
 apartmentCloudServices.factory('Users', function($http) {
   return {
     getDetails : function(id) {
-      return $http.get('http://localhost:4000/api/users/'+id);
+      return $http.get('http://104.131.161.55:4000/api/users/'+id);
     },
     addUser: function(obj) {
-      return $http.post('http://localhost:4000/api/users/', obj);
+      return $http.post('http://104.131.161.55:4000/api/users/', obj);
     },
     modifyUser: function(obj) {
-      return $http.put('http://localhost:4000/api/users/'+obj['_id'], obj);
+      return $http.put('http://104.131.161.55:4000/api/users/'+obj['_id'], obj);
     }
   }
 });

@@ -4,10 +4,6 @@ apartmentCloudControllers.controller('FrontPageController', ['$scope', '$rootSco
   $http.get('/profile').success(function(data) {
     if(!data.error) {
       $scope.profile = data.user;
-
-      if ($rootScope.profile._id === $scope.user._id) {
-        $scope.loggedIn = true;
-      }
     }
   });
 }]);
@@ -53,15 +49,29 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
   $http.get('/profile').success(function(data) {
     if(!data.error) {
       $rootScope.profile = data.user;
-
-      if ($rootScope.profile._id === $scope.user._id) {
-        $scope.loggedIn = true;
-      }
     }
   });
 
-
   $scope.profile = $rootScope.profile;
+
+  // get the current apartment object from the backend
+  Apartments.getDetails($routeParams.aptID).success(function(response) {
+    $scope.apartment = response.data;
+
+    $scope.startDate = $scope.apartment.startLease.split('T')[0];
+    $scope.endDate = $scope.apartment.endLease.split('T')[0];
+  });
+
+  Comments.getByApt($routeParams.aptID).success(function(response) {
+    $scope.commentList = response.data;
+
+    for (var i = 0; i < $scope.commentList.length; i++) {
+      var curr_rating = $scope.commentList[i].rating;
+      if (curr_rating > 0 && curr_rating <= 5) {
+        $scope.ratingsBreakdown[curr_rating-1] += 1
+      }
+    }
+  });
 
   $scope.addComment = function() {
 
@@ -91,14 +101,6 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
       });
     }
   };
-
-  // get the current apartment object from the backend
-  Apartments.getDetails($routeParams.aptID).success(function(response) {
-    $scope.apartment = response.data;
-
-    $scope.startDate = $scope.apartment.startLease.split('T')[0];
-    $scope.endDate = $scope.apartment.endLease.split('T')[0];
-  });
 
   // saves the current apartment to the users' favorite list
   $scope.saveApartment = function() {
@@ -227,10 +229,6 @@ apartmentCloudControllers.controller('SubleaseController', ['$scope', '$rootScop
   $http.get('/profile').success(function(data) {
     if(!data.error) {
       $rootScope.profile = data.user;
-
-      if ($rootScope.profile._id === $scope.user._id) {
-        $scope.loggedIn = true;
-      }
     }
   });
 
@@ -259,23 +257,12 @@ apartmentCloudControllers.controller('FrontPageController', ['$scope', '$rootSco
   $http.get('/profile').success(function(data) {
     if(!data.error) {
       $rootScope.profile = data.user;
-
-      if ($rootScope.profile._id === $scope.user._id) {
-        $scope.loggedIn = true;
-      }
     }
   });
 
-  $http.get("http://localhost:4000/api/apartment/")
+  $http.get("http://104.131.161.55:4000/api/apartment/")
       .then(function(apartments) {
         $scope.apartments = apartments.data;
-
-        for (var i = 0; i < $scope.apartments.length; i++) {
-          Apartments.getDetails($scope.apartments[i]._id).success(function(response) {
-            $scope.apartments[i].rating = response.data.rating;
-          });
-        }
-
         $scope.numBedrooms = "";
         $scope.numBathrooms = "";
         $scope.geocoder = new google.maps.Geocoder();
