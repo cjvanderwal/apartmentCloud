@@ -3,7 +3,7 @@ var app = angular.module('apartmentCloud', ['ngRoute', 'slickCarousel', 'apartme
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
   when('/login', {
-    templateUrl: 'partials/loginSignup.html',
+    templateUrl: 'partials/loginsignup.html',
     controller: 'LoginSignupController'
   }).
   when('/apartment/:aptID', {
