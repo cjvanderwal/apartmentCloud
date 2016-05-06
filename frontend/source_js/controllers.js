@@ -53,6 +53,7 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
     }
     else {
       Comments.add({apartmentId: $scope.apartment.apartmentId,
+                    username: $scope.profile.local.username,
                     userID: $scope.profile.local._id,
                     rating: $scope.comment_rating,
                     title: $scope.comment_title,

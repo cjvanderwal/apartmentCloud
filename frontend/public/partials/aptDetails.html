@@ -87,7 +87,7 @@
     <div id="comment" ng-repeat="comment in commentList">
       <h3 id="title">{{comment.title}}</h3>
       <p>{{comment.comment}}</p>
-      <p id="footnote">Written by <a ng-href="#/user/{{comment.userId}}">{{comment.userId}}</a>, who gave {{apartment.name}} a rating of <strong id="rating">{{comment.rating}}</strong> stars.
+      <p id="footnote">Written by <a ng-href="#/user/{{comment.userId}}">{{comment.username}}</a>, who gave {{apartment.name}} a rating of <strong id="rating">{{comment.rating}}</strong> stars.
     </div>
   </div>
 
