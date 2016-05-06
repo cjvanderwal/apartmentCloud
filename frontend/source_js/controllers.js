@@ -64,9 +64,6 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
   $scope.profile = $rootScope.profile;
 
   $scope.addComment = function() {
-    alert($scope.comment_title);
-    alert($scope.comment_text);
-    alert($scope.comment_rating);
 
     if ($scope.comment_title === "" || $scope.comment_text === "" || $scope.comment_rating === 0) {
       if ($scope.comment_rating === 0) {
@@ -81,6 +78,17 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
                     rating: $scope.comment_rating,
                     title: $scope.comment_title,
                     comment: $scope.comment_text });
+
+      Comments.getByApt($routeParams.aptID).success(function(response) {
+        $scope.commentList = response.data;
+
+        for (var i = 0; i < $scope.commentList.length; i++) {
+          var curr_rating = $scope.commentList[i].rating;
+          if (curr_rating > 0 && curr_rating <= 5) {
+            $scope.ratingsBreakdown[curr_rating-1] += 1
+          }
+        }
+      });
     }
   };
 
@@ -90,17 +98,6 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
 
     $scope.startDate = $scope.apartment.startLease.split('T')[0];
     $scope.endDate = $scope.apartment.endLease.split('T')[0];
-  });
-
-  Comments.getByApt($routeParams.aptID).success(function(response) {
-    $scope.commentList = response.data;
-
-    for (var i = 0; i < $scope.commentList.length; i++) {
-      var curr_rating = $scope.commentList[i].rating;
-      if (curr_rating > 0 && curr_rating <= 5) {
-        $scope.ratingsBreakdown[curr_rating-1] += 1
-      }
-    }
   });
 
   // saves the current apartment to the users' favorite list
