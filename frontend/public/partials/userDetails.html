@@ -9,15 +9,8 @@
 
     <div class="small-7 columns">
       <h2 id="title">Favorite Apartments</h2>
-      <slick infinite=true dots=true slides-to-show=3 slides-to-scroll=2>
-        <li ng-repeat="apt in apt_images" id="apt_pic"><img ng-src="{{apt}}"></img></li>
-
-        <!-- <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-        <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-        <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-        <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-        <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-        <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li> -->
+      <slick id="apt_pic" infinite=true dots=true slides-to-show=3 slides-to-scroll=2 ng-if="go === true">
+        <li ng-repeat="apt in favorite_apts"><a ng-href="#/apartment/{{apt.id}}"><img ng-src="{{apt.image}}"></img></a></li>
       </slick>
     </div>
 

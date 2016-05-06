@@ -2,7 +2,7 @@
 
   <div class="row double">
 
-    <h1 id="name">{{apartment.name}}  <button id="favorite" class="button" ng-click="saveApartment()">Save as Favorite</i></button></h1>
+    <h1 id="name">{{apartment.name}}  <button id="favorite" class="button" ng-click="saveApartment()" ng-if="profile">Save as Favorite</i></button></h1>
     <h3>{{apartment.address}}</h3>
 
     <div class="small-4 columns text-center">
@@ -43,7 +43,7 @@
         <strong>Lease Date:</strong> {{startDate}} <strong>to</strong> {{endDate}}<br>
         <strong>Company:</strong> {{apartment.company}}<br>
     </div>
-    <div class="small-8 columns">
+    <div class="small-8 columns" ng-if="profile">
       <h2>Leave a comment</h2>
       <form>
         <input id="input" type="text" ng-model="comment_title" placeholder="title" required>

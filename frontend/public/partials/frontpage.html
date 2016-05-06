@@ -34,9 +34,9 @@
         <br>
         <h4 class="inline_item">{{getNumMessage(filtered.length)}}</h4>
         <div class="inline_item filter_bar">
-            <h4 class="inline_item">Sort by</h4>
-            <input type="radio" name="orderType" checked="checked" ng-click="apartments.listorder='company'"><h4 class="inline_item">Company</h4></input>
-            <input type="radio" name="orderType" ng-click="apartments.listorder=sortByPrice"><h4 class="inline_item">Price/Bedroom</h4></input>
+            <h4 id= "title" class="inline_item">Sort by</h4><br>
+            <input type="radio" name="orderType" checked="checked" ng-click="apartments.listorder='company'"><h4 class="inline_item">Company</h4></input><br>
+            <input type="radio" name="orderType" ng-click="apartments.listorder=sortByPrice"><h4 class="inline_item">Price per bedroom</h4></input>
         </div>
         <br>
     </div>
@@ -48,20 +48,15 @@
         <div class="columns small-12" ng-repeat="apt in apartments.data | orderBy:apartments.listorder | filter: {company : selectedCompany} | filter:filterBedrooms | filter:filterBathrooms | filter:filterPrice | filter:filterMap as filtered" ng-init="apartments.listorder='company'">
             <div row>
                 <div class="small-4 columns">
-                    <a href="#/apartment/{{apt._id}}"><img class="grow" src="{{apt.image}}"></a>
+                    <a href="#/apartment/{{apt._id}}"><img id="apt_list" class="grow" src="{{apt.image}}"></a>
                 </div>
-                <div class="small-4 columns">
+                <div class="small-4 columns end">
+                    <h3 id="company">{{apt.company}}</h3>
                     <strong id="attrib">Name:</strong> {{apt.name}}<br>
                     <strong id="attrib"># Bedrooms:</strong> {{apt.noOfBedroom}}<br>
                     <strong id="attrib"># Bathrooms:</strong> {{apt.noOfBathRoom}}<br>
                     <strong id="attrib">Price per month:</strong> {{apt.price}}<br>
                     <strong id="attrib">Lease period:</strong> {{readableDate(apt.startLease)}} - {{readableDate(apt.endLease)}}
-                </div>
-                <div class="small-4 columns">
-                  <div class="text-center">
-                    <h3 id="company">{{apt.company}}</h3>
-                    {{apt.rating}}/5
-                  </div>
                 </div>
             </div>
         </div>

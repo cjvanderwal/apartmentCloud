@@ -5,7 +5,7 @@ apartmentCloudControllers.controller('FrontPageController', ['$scope', '$rootSco
 }]);
 
 apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http', '$location', 'Users', function($scope, $http, $location, Users) {
-  $scope.newUser = $location.search['newUser'];
+  $scope.newUser = $location.search()['newUser'];
   $scope.username = "";
   $scope.email = "";
   $scope.password = "";
@@ -42,6 +42,8 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
   $scope.comment_rating = 0;
   $scope.ratingStatus = "";
 
+  $scope.profile = $rootScope.profile;
+
   $scope.addComment = function() {
     if ($scope.comment_title === "" || $scope.comment_text === "" || $scope.comment_rating === 0) {
       if ($scope.comment_rating === 0) {
@@ -51,7 +53,7 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
     }
     else {
       Comments.add({apartmentId: $scope.apartment.apartmentId,
-                    userID: _____,
+                    userID: $scope.profile.local._id,
                     rating: $scope.comment_rating,
                     title: $scope.comment_title,
                     comment: $scope.comment_text });
@@ -79,7 +81,16 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
 
   // saves the current apartment to the users' favorite list
   $scope.saveApartment = function() {
-    $rootScope.profile.local.favorited_ids.push($scope.apartment._id);
+    for (var i = 0; i < $rootScope.profile.local.favorited_ids.length; i++) {
+      if ($scope.apartment._id === JSON.parse($rootScope.profile.local.favorited_ids[i]).id) {
+        return;
+      }
+    }
+
+    $rootScope.profile.local.favorited_ids.push(JSON.stringify({
+      id: $scope.apartment._id,
+      image: $scope.apartment.image
+    }));
     Users.modifyUser($rootScope.profile).success(function(data) {
       document.getElementById('favorite').innerHTML = 'Saved';
     });
@@ -99,6 +110,12 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
   Users.getDetails($routeParams.userID).success(function(response) {
     $scope.user = response.data;
 
+    $scope.favorite_apts = [];
+    for (var i = 0; i < $scope.user.local.favorited_ids.length; i++){
+      $scope.favorite_apts.push(JSON.parse($scope.user.local.favorited_ids[i]));
+    }
+    $scope.go = true;
+
     $scope.loggedIn = false;
     $http.get('/profile').success(function(data) {
       if(!data.error) {
@@ -106,13 +123,6 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
 
         if ($rootScope.profile._id === $scope.user._id) {
           $scope.loggedIn = true;
-        }
-
-        $scope.apt_images = [];
-        for (var i = 0; i < $scope.user.local.favorited_ids.length; i++) {
-            Apartments.getDetails($scope.user.local.favorited_ids[i]).success(function(response) {
-              $scope.apt_images.push(response.data.image);
-            });
         }
   		}
     });
@@ -159,10 +169,18 @@ apartmentCloudControllers.controller('FrontPageController', ['$scope', '$http', 
   $http.get("http://localhost:4000/api/apartment/")
       .then(function(apartments) {
         $scope.apartments = apartments.data;
+
+        for (var i = 0; i < $scope.apartments.length; i++) {
+          Apartments.getDetails($scope.apartments[i]._id).success(function(response) {
+            $scope.apartments[i].rating = response.data.rating;
+          });
+        }
+
         $scope.numBedrooms = "";
         $scope.numBathrooms = "";
         $scope.geocoder = new google.maps.Geocoder();
         $scope.errorMessage = "";
+
       })
       .catch(function(err) {
         console.log("failure");
