@@ -4,7 +4,7 @@
     <div class="small-3 columns text-center">
       <img src="{{user.local.picture_url}}"></img><br>
       <h4 id="title">{{user.local.name}}</h4>
-      <a class="button" ng-href="#/sublease">Create a sublease</a>
+      <a class="button" ng-href="#/sublease" ng-show=loggedIn>Create a sublease</a>
     </div>
 
     <div class="small-7 columns">
