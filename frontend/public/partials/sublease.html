@@ -3,23 +3,27 @@
     <h2 id="title">Create a sublease</h2>
   </div>
   <div class="row">
-	  <div class="small-6 small-centered columns">
+    <div class="small-6 small-centered columns">
       <div id="form">
         Name <span class="required">*</span>
-			  <input id="input" ng-model="name" name="name" type="text" class="form-control" required>
+        <input id="input" ng-model="name" name="name" type="text" class="form-control" placeholder="John Smith's Apartment" required>
         Address <span class="required">*</span>
-        <input id="input" ng-model="address" name="address" type="text" class="form-control" required>
-        Price <span class="required">*</span>
-	      <input id="input" ng-model="price" name="price" type="text" class="form-control" required>
+        <input id="input" ng-model="address" name="address" type="text" class="form-control" placeholder="1401 W Green St, Urbana, IL 61801" required>
+        Price per month <span class="required">*</span>
+        <input id="input" ng-model="price" name="price" type="text" class="form-control" placeholder="500" required>
         No. of Bedrooms <span class="required">*</span>
-	      <input id="input" ng-model="bedrooms" name="bedrooms" type="text" class="form-control" required>
+        <input id="input" ng-model="bedrooms" name="bedrooms" type="text" class="form-control" placeholder="4" required>
         No. of Bathrooms <span class="required">*</span>
-	      <input id="input" ng-model="bathrooms" name="bathrooms" type="text" class="form-control" required>
+        <input id="input" ng-model="bathrooms" name="bathrooms" type="text" class="form-control" placeholder="2" required>
         Lease Date <span class="required">*</span><br>
-        <div class="small-6 columns"><input id="input" ng-model="startDate" name="startDate" type="text" class="form-control" required></div>
-        <div class="small-6 columns"><input id="input" ng-model="endDate" name="endDate" type="text" class="form-control" required></div>
+        <div class="small-6 columns"><input id="input" ng-model="startDate" name="startDate" type="text" class="form-control" placeholder="August 1, 2016" required></div>
+        <div class="small-6 columns"><input id="input" ng-model="endDate" name="endDate" type="text" class="form-control" placeholder="August 1, 2017" required></div>
+        Contact <span class="required">*</span>
+        <input id="input" ng-model="contact" name="contact" type="text" class="form-control" placeholder="(217)-333-0691 or john@smith.com" required>
+        Description
+        <textarea id="input" ng-model="description" name="description" type="text" class="form-control" rows="3" placeholder="Your average apartment."></textarea>
         Image URL
-        <input id="input" ng-model="image" name="image" type="text" class="form-control">
+        <input id="input" ng-model="image" name="image" type="text" placeholder="johnsmith.com/myaptpic" class="form-control">
 
         <div class="text-center"><button id="submit" class="button info" ng-click="createSublease()">Create</button></div>
       </div>

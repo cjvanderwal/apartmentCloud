@@ -175,6 +175,7 @@ router.route('/users/:id')
                 if (user.local.password !== req.body.local.password)
                   user.local.password = user.generateHash(req.body.local.password);
                 user.local.favorited_ids = req.body.local.favorited_ids;
+                user.local.subleases = req.body.local.subleases;
                 user.local.bio = req.body.local.bio;
                 user.local.picture_url = req.body.local.picture_url;
                 user.save(function (err) {

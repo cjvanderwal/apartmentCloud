@@ -129,8 +129,32 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
         if ($rootScope.profile._id === $scope.user._id) {
           $scope.loggedIn = true;
         }
+
+        $scope.apt_images = [];
+        for (var i = 0; i < $scope.user.local.favorited_ids.length; i++) {
+            Apartments.getDetails($scope.user.local.favorited_ids[i]).success(function(response) {
+              $scope.apt_images.push(response.data.image);
+            });
+        }
+
+        $scope.subleases = [];
+        for (var i = 0; i < $scope.user.local.subleases.length; i++) {
+          Apartments.getDetails($scope.user.local.subleases[i]).success(function(response) {
+            $scope.subleases.push(response.data);
+          });
+        }
   		}
     });
+
+    $scope.deleteSublease = function(subl_id) {
+      Apartments.deleteApt(subl_id).success(function(response) {
+        var index =  $rootScope.profile.local.subleases.indexOf(subl_id);
+        $rootScope.profile.local.subleases.splice(index, 1);
+        Users.modifyUser($rootScope.profile).success(function(data) {
+          document.getElementById(subl_id + "_delete_button").innerHTML = 'Deleted';
+        });
+      });
+    }
   });
 
   // updates the current users' password
@@ -156,7 +180,7 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
 
 }]);
 
-apartmentCloudControllers.controller('SubleaseController', ['$scope', '$http', '$routeParams', 'Apartments', function($scope, $http, $routeParams, Apartments) {
+apartmentCloudControllers.controller('SubleaseController', ['$scope', '$rootScope', '$http', '$routeParams', 'Apartments', 'Users', function($scope, $rootScope, $http, $routeParams, Apartments, Users) {
   // $scope.name = "";
   // $scope.address = "";
   // $scope.price = "";
@@ -166,8 +190,18 @@ apartmentCloudControllers.controller('SubleaseController', ['$scope', '$http', '
   // $scope.endDate = Date.now();
 
    $scope.createSublease = function() {
-     Apartments.addSublease({name: $scope.name, address: $scope.address, price: $scope.price, company: "Sublease", noOfBedroom : $scope.bedrooms, noOfBathRoom : $scope.bathrooms, startLease : $scope.startDate, endLease: $scope.endDate, image: $scope.image}).then(function(response) {
-           $scope.registerStatus = response.data.message;
+     if ($rootScope.profile === undefined) {
+       $scope.registerStatus = "failure";
+       return;
+     }
+     if ($scope.description === undefined || $scope.description.length == 0) {
+       $scope.description = "No description provided.";
+     }
+     Apartments.addSublease({name: $scope.name, address: $scope.address, price: $scope.price, company: "Sublease", noOfBedroom : $scope.bedrooms, noOfBathRoom : $scope.bathrooms, startLease : $scope.startDate, endLease: $scope.endDate, contact: $scope.contact, description: $scope.description, image: $scope.image}).then(function(response) {
+           $rootScope.profile.local.subleases.push(response.data.data._id);
+           Users.modifyUser($rootScope.profile).success(function(data) {
+             document.getElementById('submit').innerHTML = 'Added';
+           });
          },
          function(error) {
            $scope.registerStatus = error.data.message;

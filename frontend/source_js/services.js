@@ -10,6 +10,9 @@ apartmentCloudServices.factory('Apartments', function($http) {
     },
     modifyApt: function(obj) {
       return $http.put('http://localhost:4000/api/apartment/'+obj['_id'], obj);
+    },
+    deleteApt: function(id) {
+      return $http.delete('http://localhost:4000/api/apartment/'+id);
     }
   }
 });
