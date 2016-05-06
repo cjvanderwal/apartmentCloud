@@ -120,16 +120,21 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
 
   // updates the current users' password
   $scope.updatePassword = function() {
-    $rootScope.profile.local.password = $scope.newPassword;
-    Users.modifyUser($rootScope.profile).success(function(response) {
-      $scope.passStatus = "password updated!";
-    });
+    if($scope.newPassword !== $scope.confirmPassword) {
+      $scope.passStatus = "Passwords do not match!";
+    }
+    else {
+      $rootScope.profile.local.password = $scope.newPassword;
+      Users.modifyUser($rootScope.profile).success(function(response) {
+        $scope.passStatus = "Password updated!";
+      });
+    }
   };
   // updates the current users' password
   $scope.updatePicture = function() {
     $rootScope.profile.local.picture_url = $scope.newPicture;
     Users.modifyUser($rootScope.profile).success(function(response) {
-      $scope.picStatus = "picture updated!";
+      $scope.picStatus = "Picture updated!";
       $scope.user = response.data;
     });
   };

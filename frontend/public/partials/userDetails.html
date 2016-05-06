@@ -31,7 +31,8 @@
     <div ng-show="changePassword">
       <div id="changeInfo" class="small-2 columns">
         <a class="float-right" ng-click="changePassword = !changePassword">X</a><br>
-        <input id="input" ng-model="newPassword" type="password" placeholder="password">
+        <input id="input" ng-model="newPassword" type="password" placeholder="New password">
+        <input id="input" ng-model="confirmPassword" type="password" placeholder="Confirm password">
         <button class="button" ng-click="updatePassword()">Change</button><br>
         <strong id="status">{{passStatus}}</strong>
       </div>
