@@ -169,15 +169,18 @@ router.route('/users/:id')
             else if (user == null)
                 res.status(404).json({message: "User not found", data: user})
             else {
-                user.username = req.body.username;
-                user.name = req.body.name;
-                user.email = req.body.email;
-                user.password = req.body.password;
-                //user.favorited_ids = req.body.favorited_ids;
-                user.bio = req.body.bio;
-                user.picture_url = req.body.picture_url;
+                user.local.username = req.body.local.username;
+                user.local.name = req.body.local.name;
+                user.local.email = req.body.local.email;
+                if (user.local.password !== req.body.local.password)
+                  user.local.password = user.generateHash(req.body.local.password);
+                user.local.favorited_ids = req.body.local.favorited_ids;
+                user.local.bio = req.body.local.bio;
+                user.local.picture_url = req.body.local.picture_url;
                 user.save(function (err) {
                     if (err) {
+
+                      console.log(err);
                         if (err.code == 11000)
                             res.status(500).json({message: "Duplicate e-mail", data: []});
                         else

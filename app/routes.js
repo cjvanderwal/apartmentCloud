@@ -1,9 +1,9 @@
 module.exports = function(app, passport) {
 
-	app.post('/signup', passport.authenticate('local-signup'), function(req, res) {
+	app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/#/login?newUser=false'}), function(req, res) {
 		res.redirect('/#/user/'+res.req.user._id);
 	});
-	app.post('/login', passport.authenticate('local-login'), function(req, res) {
+	app.post('/login', passport.authenticate('local-login', {failureRedirect: '/#/login'}), function(req, res) {
 		res.redirect('/#/user/'+res.req.user._id);
 	});
 	app.get('/profile', isLoggedIn, function(req, res) {

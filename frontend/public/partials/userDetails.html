@@ -10,24 +10,28 @@
     <div class="small-7 columns">
       <h2 id="title">Favorite Apartments</h2>
       <slick infinite=true dots=true slides-to-show=3 slides-to-scroll=2>
+        <li ng-repeat="apt in apt_images" id="apt_pic"><img ng-src="{{apt}}"></img></li>
+
+        <!-- <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
         <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-        <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
-        <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li>
+        <li><img style="height:150px;width:150px;" src="https://openclipart.org/download/19100/josuemb-house-silhouette.svg"></img></li> -->
       </slick>
     </div>
 
-    <div class="text-right" ng-show="!changePassword && !changePicture">
-      <button class="button" ng-click="changePassword = !changePassword">Change Password</button>
-      <button class="button" ng-click="changePicture = !changePicture">Change Picture</button>
+    <div ng-show="loggedIn">
+      <div class="text-right" ng-show="!changePassword && !changePicture">
+        <button class="button" ng-click="changePassword = !changePassword">Change Password</button>
+        <button class="button" ng-click="changePicture = !changePicture">Change Picture</button>
+      </div>
     </div>
 
     <div ng-show="changePassword">
       <div id="changeInfo" class="small-2 columns">
         <a class="float-right" ng-click="changePassword = !changePassword">X</a><br>
-        <input id="input" ng-model="newPassword" type="text" placeholder="password">
+        <input id="input" ng-model="newPassword" type="password" placeholder="password">
         <button class="button" ng-click="updatePassword()">Change</button><br>
         <strong id="status">{{passStatus}}</strong>
       </div>

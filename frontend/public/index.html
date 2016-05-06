@@ -46,17 +46,17 @@
         </div>
 
         <div class="top-bar-right">
-            <div class="menu" >
-                <form>
-                    <span><input id="input" type="text" name="username" placeholder="username" class="inline_item"></span>
-                    <span><input id="input" type="text" name="password" placeholder="password" class="inline_item"></span>
-                    <span><button class="button" class="menu_item">Login</button></span>
+            <div class="menu" ng-show="profile === undefined">
+                <form action="/login" method="post">
+                  <span><input id="input" type="text" name="username" placeholder="username" class="inline_item"></span>
+                  <span><input id="input" type="password" name="password" placeholder="password" class="inline_item"></span>
+                  <span><button class="button" class="menu_item" type="submit">Login</button></span>
                 </form>
-                <span class="float-right"><a id="text" ng-href="#/login">Sign up instead</a></span>
+                <span class="float-right"><a id="text" ng-href="#/login?newUser=true">Sign up instead</a></span>
             </div>
-            <div class="logged_menu" style="display: none">
-                <span class="inline_item"><button class="button">Profile</button></span>
-                <span class="inline_item"><button class="button">Logout</button></span>
+            <div class="logged_menu" ng-show="profile !== undefined">
+                <span  id="name" class="inline_item" id="name_2">Hello, <a ng-href="#/user/{{profile._id}}"><span>{{profile.local.name}}</span></a></span>
+                <span class="inline_item"><a ng-href="/logout" class="button">Logout</a></span>
             </div>
 
         </div>

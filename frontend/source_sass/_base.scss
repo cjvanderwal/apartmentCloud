@@ -54,6 +54,12 @@ a {
 
 // app wide navbar
 #navbar {
+  #name {
+    font-size: 25px;
+    span {
+      color: $my_green;
+    }
+  }
   #text {
     color: $my_white;
   }
@@ -213,6 +219,13 @@ a {
   }
   img {
     color: white;
+  }
+  #apt_pic {
+    display: inline-block;
+    img {
+      height: 150px;
+      width: 150px;
+    }
   }
   #changeInfo {
     border: 1px solid $my_black;

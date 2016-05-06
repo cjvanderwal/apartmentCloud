@@ -1,7 +1,11 @@
 var apartmentCloudControllers = angular.module('apartmentCloudControllers', []);
 
-apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http', 'Users', function($scope, $http, Users) {
-  $scope.newUser = true;
+apartmentCloudControllers.controller('FrontPageController', ['$scope', '$rootScope', function($scope, $rootScope) {
+  $scope.profile = $rootScope.profile;
+}]);
+
+apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http', '$location', 'Users', function($scope, $http, $location, Users) {
+  $scope.newUser = $location.search['newUser'];
   $scope.username = "";
   $scope.email = "";
   $scope.password = "";
@@ -27,14 +31,9 @@ apartmentCloudControllers.controller('LoginSignupController', ['$scope', '$http'
     });
   };
 
-  // // user is logging in, send GET request to backend
-  // $scope.login = function() {
-  //   //?????
-  // };
-
 }]);
 
-apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$http', '$routeParams', 'Apartments', 'Comments', function($scope, $http, $routeParams, Apartments, Comments) {
+apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$rootScope', '$http', '$routeParams', 'Apartments', 'Comments', 'Users', function($scope, $rootScope, $http, $routeParams, Apartments, Comments, Users) {
   $scope.ratingsBreakdown = [0,0,0,0,0];
   $scope.labels = ['1 star', '2 stars', '3 stars', '4 stars', '5 stars'];
 
@@ -78,15 +77,17 @@ apartmentCloudControllers.controller('ApartmentDetailsController', ['$scope', '$
     }
   });
 
-
-  // // saves the current apartment to the users' favorite list
-  // $scope.saveApartment = function() {
-  //   //?????
-  // };
+  // saves the current apartment to the users' favorite list
+  $scope.saveApartment = function() {
+    $rootScope.profile.local.favorited_ids.push($scope.apartment._id);
+    Users.modifyUser($rootScope.profile).success(function(data) {
+      document.getElementById('favorite').innerHTML = 'Saved';
+    });
+  };
 
 }]);
 
-apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootScope', '$http', '$routeParams', 'Users', function($scope, $rootScope, $http, $routeParams, Users) {
+apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootScope', '$http', '$routeParams', 'Users', 'Apartments', function($scope, $rootScope, $http, $routeParams, Users, Apartments) {
   $scope.changePassword = false;
   $scope.changePicture = false;
   $scope.newPassword = "";
@@ -94,35 +95,42 @@ apartmentCloudControllers.controller('UserDetailsController', ['$scope', '$rootS
   $scope.passStatus = "";
   $scope.picStatus = "";
 
-  // // get the curremt user object from the backend
-  // Users.getDetails($routeParams.userID).success(function(response) {
-  //   $scope.user = response.data;
-  // });
+  // get the curremt user object from the backend
+  Users.getDetails($routeParams.userID).success(function(response) {
+    $scope.user = response.data;
 
-  $scope.profile = false;
-  $http.get('/profile').success(function(data) {
-    if(!data.error) {
-			$scope.profile = true;
-			$rootScope.user = data.user;
-		}
-    else {
-      console.log(data.error);
-      alert(data.error);
-    }
+    $scope.loggedIn = false;
+    $http.get('/profile').success(function(data) {
+      if(!data.error) {
+  			$rootScope.profile = data.user;
+
+        if ($rootScope.profile._id === $scope.user._id) {
+          $scope.loggedIn = true;
+        }
+
+        $scope.apt_images = [];
+        for (var i = 0; i < $scope.user.local.favorited_ids.length; i++) {
+            Apartments.getDetails($scope.user.local.favorited_ids[i]).success(function(response) {
+              $scope.apt_images.push(response.data.image);
+            });
+        }
+  		}
+    });
   });
 
   // updates the current users' password
   $scope.updatePassword = function() {
-    $scope.user.password = $scope.newPassword;
-    Users.modifyUser($scope.user).success(function(response) {
+    $rootScope.profile.local.password = $scope.newPassword;
+    Users.modifyUser($rootScope.profile).success(function(response) {
       $scope.passStatus = "password updated!";
     });
   };
   // updates the current users' password
   $scope.updatePicture = function() {
-    $scope.user.picture_url = $scope.newPicture;
-    Users.modifyUser($scope.user).success(function(response) {
+    $rootScope.profile.local.picture_url = $scope.newPicture;
+    Users.modifyUser($rootScope.profile).success(function(response) {
       $scope.picStatus = "picture updated!";
+      $scope.user = response.data;
     });
   };
 

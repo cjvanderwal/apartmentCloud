@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
         name: {type: String, required: true},
         dateCreated: {type: Date, default: Date.now},
         password: {type: String, required: true},
-        //favorited_ids: {type:[ObjectId], default:[]},
+        favorited_ids: {type:[String], default:[]},
         bio: {type: String, default: ""},
         picture_url: {
             type: String,
